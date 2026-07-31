@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="月影潭心">
+  <rect width="64" height="64" rx="16" fill="#071713"/>
+  <path d="M45 14a21 21 0 1 0 5 35A23 23 0 1 1 45 14Z" fill="#d8b77f"/>
+  <path d="M11 47c9-7 18-7 26 0 6 5 11 5 16 1" fill="none" stroke="#dce8e2" stroke-width="3" stroke-linecap="round" opacity=".85"/>
+</svg>

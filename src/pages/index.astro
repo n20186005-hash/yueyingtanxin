@@ -1,0 +1,548 @@
+---
+import '../styles/global.css';
+
+const title = '蘭潭月影潭心｜嘉義湖畔藝術散步指南';
+const description = '整理蘭潭月影潭心的交通、停車、費用、最佳時段、周邊美食與景點，並提供本機行程清單及照片紀念卡製作。';
+const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : undefined;
+const ogImageURL = Astro.site ? new URL('/images/og.webp', Astro.site).toString() : undefined;
+const mapsURL = 'https://www.google.com/maps/place/%E5%85%B0%E6%BD%AD%E6%9C%88%E5%BD%B1%E6%BD%AD%E5%BF%83/data=!4m7!3m6!1s0x346e9458614570cb:0xfde645383820da8b!8m2!3d23.465877!4d120.48071!16s%2Fg%2F11fxxxvc6p!19sChIJy3BFYViUbjQRi9ogODhF5v0?authuser=0&hl=zh-CN&rclk=1';
+
+const attractionStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': ['TouristAttraction', 'LocalBusiness'],
+  name: '蘭潭月影潭心',
+  alternateName: '月影潭心',
+  description,
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '鹿寮里紅毛埤187號之4（蘭潭風景區）',
+    addressLocality: '嘉義市',
+    addressRegion: '東區',
+    postalCode: '600',
+    addressCountry: 'TW',
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: [
+      'https://schema.org/Monday',
+      'https://schema.org/Tuesday',
+      'https://schema.org/Wednesday',
+      'https://schema.org/Thursday',
+      'https://schema.org/Friday',
+      'https://schema.org/Saturday',
+      'https://schema.org/Sunday',
+    ],
+    opens: '00:00',
+    closes: '23:59',
+  },
+  isAccessibleForFree: true,
+  priceRange: '免費',
+  telephone: '+886-5-224-8917',
+  aggregateRating: {
+    '@type': 'AggregateRating',
+    ratingValue: 4.2,
+    bestRating: 5,
+    worstRating: 1,
+  },
+  sameAs: [mapsURL],
+  ...(canonicalURL ? { url: canonicalURL } : {}),
+  ...(ogImageURL ? { image: [ogImageURL] } : {}),
+};
+
+const faqs = [
+  {
+    question: '蘭潭月影潭心需要門票嗎？',
+    answer: '不需要。月影潭心位於蘭潭風景區的戶外公共空間，可免費參觀；若周邊另有期間限定活動，費用以主辦單位公告為準。',
+  },
+  {
+    question: '什麼時候去最好看？',
+    answer: '建議日落前抵達，先看鋁編結構在自然光下形成的影子，再一路停留到點燈後。晴天、陰天與夜間各有不同氣氛。',
+  },
+  {
+    question: '建議停留多久？',
+    answer: '只看月影潭心並拍照，可安排約一小時；若加上蘭潭散步、觀景或周邊步道，建議預留更充裕的半日行程。',
+  },
+  {
+    question: '沒有開車怎麼前往？',
+    answer: '可由嘉義車站搭乘市區公車前往「月影潭心」站，下車後短距離步行抵達。由高鐵嘉義站出發，可先搭 BRT 到嘉義車站再轉乘。班次可能調整，出發前請查看當日動態。',
+  },
+  {
+    question: '現場方便停車嗎？',
+    answer: '周邊有路邊與風景區停車空間，但假日傍晚較容易客滿。請依現場標線及告示停放，不要佔用紅線、出入口或步道。',
+  },
+  {
+    question: '適合輪椅或嬰兒車嗎？',
+    answer: '作品動線設有斜坡入口，主要觀景區也有鋪面；不過湖畔局部路面與坡度會受地形影響，雨後需留意濕滑。',
+  },
+  {
+    question: '蘭潭水舞每天都有嗎？',
+    answer: '蘭潭音樂噴泉通常依季節安排晚間場次，但可能因維修、天候或活動調整。不要只依舊文章時間前往，建議出發前查看嘉義市官方最新公告。',
+  },
+];
+
+const faqStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: {
+      '@type': 'Answer',
+      text: faq.answer,
+    },
+  })),
+};
+
+const gallery = [
+  { src: '/images/moonheart-main.webp', alt: '月影潭心鋁編藝術裝置與蘭潭湖畔草地', title: '鋁編起伏與湖畔', width: 1920, height: 1440 },
+  { src: '/images/lantan-cloudy.webp', alt: '多雲天氣下的蘭潭湖面', title: '雲影落在蘭潭', width: 1800, height: 1201 },
+  { src: '/images/lantan-fountain.webp', alt: '蘭潭音樂噴泉水景', title: '湖面水舞', width: 1800, height: 1200 },
+  { src: '/images/lantan-panorama-2.webp', alt: '草坡前方的蘭潭湖景', title: '湖岸草坡', width: 1800, height: 1350 },
+  { src: '/images/lantan-panorama-3.webp', alt: '蘭潭湖面與遠方林木', title: '靜水與遠林', width: 1280, height: 960 },
+  { src: '/images/lantan-panorama.webp', alt: '樹蔭下眺望蘭潭湖面', title: '樹影中的湖', width: 1800, height: 1350 },
+];
+---
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#071713" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <title>{title}</title>
+    {canonicalURL && <link rel="canonical" href={canonicalURL} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonicalURL && <meta property="og:url" content={canonicalURL} />}
+    {ogImageURL && <meta property="og:image" content={ogImageURL} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImageURL && <meta name="twitter:image" content={ogImageURL} />}
+    <script type="application/ld+json" set:html={JSON.stringify(attractionStructuredData)} />
+    <script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)} />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HXM22WWPKP');
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要內容</a>
+
+    <header class="topbar">
+      <div class="site-shell flex h-16 items-center justify-between gap-5">
+        <a href="#top" class="flex min-w-max items-center gap-2.5 no-underline" aria-label="月影潭心，回到頁首">
+          <img class="h-8 w-8 rounded-lg" src="/favicon.svg" alt="" width="32" height="32" aria-hidden="true" />
+          <span>
+            <span class="display-serif block text-lg font-semibold leading-none text-white">月影潭心</span>
+            <span class="brand-subtitle mt-1 block text-[0.58rem] leading-none tracking-[0.16em] text-white/45">LANTAN · CHIAYI</span>
+          </span>
+        </a>
+        <nav class="nav-scroll flex items-center gap-1 overflow-x-auto text-sm" aria-label="頁面導覽">
+          <a class="rounded-full px-3 py-2 text-white/70 no-underline hover:bg-white/10 hover:text-white" href="#visit">行前資訊</a>
+          <a class="rounded-full px-3 py-2 text-white/70 no-underline hover:bg-white/10 hover:text-white" href="#transport">交通</a>
+          <a class="rounded-full px-3 py-2 text-white/70 no-underline hover:bg-white/10 hover:text-white" href="#gallery">照片</a>
+          <a class="rounded-full px-3 py-2 text-white/70 no-underline hover:bg-white/10 hover:text-white" href="#card-maker">紀念卡</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <section id="top" class="hero" aria-labelledby="hero-title">
+        <img class="hero-image" src="/images/moonheart-main.webp" alt="嘉義蘭潭月影潭心鋁編公共藝術" width="1920" height="1440" fetchpriority="high" />
+        <div class="hero-orbit" aria-hidden="true"></div>
+        <div class="site-shell hero-content">
+          <div class="eyebrow">嘉義 · 蘭潭湖畔公共藝術</div>
+          <h1 id="hero-title" class="hero-title">月影<span>潭心</span></h1>
+          <p class="hero-lead">沿著銀白色鋁編走進湖風、樹影與夜色之間。這不是一座只能遠觀的雕塑，而是一條讓人慢下來、穿行其中的光影路徑。</p>
+          <div class="mt-6 flex flex-wrap gap-2" aria-label="景點摘要">
+            <span class="pill">免費參觀</span>
+            <span class="pill">戶外全天候開放</span>
+            <span class="pill">建議傍晚至夜間</span>
+          </div>
+          <div class="mt-7 flex flex-wrap gap-3">
+            <a class="primary-button no-underline" href="#visit">開始規劃</a>
+            <a class="secondary-button no-underline" href={mapsURL} target="_blank" rel="noreferrer">開啟地圖導航 <span aria-hidden="true">↗</span></a>
+          </div>
+        </div>
+      </section>
+
+      <section class="site-shell py-24 md:py-32" aria-labelledby="story-title">
+        <div class="grid items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
+          <div>
+            <div class="eyebrow">THE ARTWORK</div>
+            <h2 id="story-title" class="section-title">一座可以走進去的湖畔月光</h2>
+            <p class="section-copy mt-6">「月影潭心」由嘉義出生的藝術家王文志創作，以鋁片編織出延伸、起伏的有機結構。作品把「月影」、湖心水紋與「談心」的諧音放在同一個空間裡，遠看像銀色山脊，走進去則像穿過一片被光切開的森林。</p>
+            <p class="section-copy mt-4">一側以階梯連接，另一側設有斜坡動線；白天能看見網格影子落在地面，入夜後燈光讓整座作品像漂浮在蘭潭邊的發光植物。</p>
+            <div class="mt-8 grid grid-cols-2 gap-4">
+              <div class="border-l border-[#d3ad70]/50 pl-4">
+                <div class="text-xs tracking-[0.16em] text-white/45">藝術家</div>
+                <div class="display-serif mt-2 text-xl text-white">王文志</div>
+              </div>
+              <div class="border-l border-[#d3ad70]/50 pl-4">
+                <div class="text-xs tracking-[0.16em] text-white/45">公開年份</div>
+                <div class="display-serif mt-2 text-xl text-white">2012</div>
+              </div>
+            </div>
+          </div>
+          <figure class="relative overflow-hidden rounded-[2rem] border border-white/10">
+            <img class="story-photo h-full w-full" src="/images/lantan-cloudy.webp" alt="雲天下的蘭潭湖景" width="1800" height="1201" loading="lazy" decoding="async" />
+            <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6 pt-20 text-sm text-white/75">先看湖，再看作品；月影潭心的魅力來自它與蘭潭地景放在一起時的尺度感。</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <section id="visit" class="moon-grid border-y border-white/10 bg-[#0b1f19] py-24 md:py-32" aria-labelledby="visit-title">
+        <div class="site-shell">
+          <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <div class="eyebrow">BEFORE YOU GO</div>
+              <h2 id="visit-title" class="section-title">先把最重要的事看完</h2>
+            </div>
+            <p class="section-copy lg:justify-self-end">這裡是開放式湖畔景點，沒有售票口與固定入場時段。夜間照明、水舞及公車班次可能調整，頁面以不容易過期的行前判斷為主。</p>
+          </div>
+
+          <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            <article class="info-card">
+              <div class="info-label">門票 / 費用</div>
+              <div class="info-value">免費</div>
+              <p class="mt-3 text-sm leading-6 text-white/55">公共戶外空間，無需預約。</p>
+            </article>
+            <article class="info-card">
+              <div class="info-label">開放狀態</div>
+              <div class="info-value">全天候</div>
+              <p class="mt-3 text-sm leading-6 text-white/55">夜間請留意照明、天氣與現場公告。</p>
+            </article>
+            <article class="info-card">
+              <div class="info-label">最佳時段</div>
+              <div class="info-value">日落前後</div>
+              <p class="mt-3 text-sm leading-6 text-white/55">一次收集白天結構、夕照與點燈。</p>
+            </article>
+            <article class="info-card">
+              <div class="info-label">建議停留</div>
+              <div class="info-value">約 1–1.5 小時</div>
+              <p class="mt-3 text-sm leading-6 text-white/55">加走湖畔步道可安排半日。</p>
+            </article>
+            <article class="info-card">
+              <div class="info-label">無障礙</div>
+              <div class="info-value">設有斜坡</div>
+              <p class="mt-3 text-sm leading-6 text-white/55">雨後鋪面與坡道可能濕滑。</p>
+            </article>
+          </div>
+
+          <div class="mt-6 grid gap-6 lg:grid-cols-2">
+            <article class="glass-panel rounded-[1.5rem] p-6 md:p-8">
+              <div class="flex items-start gap-4">
+                <span class="route-badge" aria-hidden="true">P</span>
+                <div>
+                  <h3 class="display-serif text-2xl text-white">停車資訊</h3>
+                  <p class="mt-3 leading-7 text-white/65">月影潭心周邊有路邊停車與蘭潭風景區停車空間，部分位置為免費使用。假日傍晚與活動時段較容易滿位，抵達後請以現場標線、告示與交通人員指引為準。</p>
+                  <ul class="mt-4 grid gap-2 text-sm leading-6 text-white/55">
+                    <li>• 不佔用紅線、消防通道、住家出入口及步道。</li>
+                    <li>• 路邊下車時留意彎道與自行車。</li>
+                    <li>• 對面一帶可找到公共廁所，開放狀況依現場為準。</li>
+                  </ul>
+                </div>
+              </div>
+            </article>
+            <article class="glass-panel rounded-[1.5rem] p-6 md:p-8">
+              <div class="flex items-start gap-4">
+                <span class="route-badge" aria-hidden="true">☾</span>
+                <div>
+                  <h3 class="display-serif text-2xl text-white">夜間遊覽提醒</h3>
+                  <p class="mt-3 leading-7 text-white/65">月影潭心最適合慢慢看光影，但湖畔夜間風大、蚊蟲多，雨後也容易濕滑。建議穿防滑鞋，帶薄外套與防蚊用品，不攀爬作品外緣。</p>
+                  <p class="mt-4 text-sm leading-6 text-[#d3ad70]">水舞場次會隨季節、維護與天氣調整，出發前請查嘉義市官方公告。</p>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="transport" class="site-shell py-24 md:py-32" aria-labelledby="transport-title">
+        <div class="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
+          <div>
+            <div class="eyebrow">GETTING THERE</div>
+            <h2 id="transport-title" class="section-title">詳細交通，不必先猜轉乘方式</h2>
+            <p class="section-copy mt-6">導航時請直接開啟「蘭潭月影潭心」Google 地圖地點頁面，不要只搜尋「蘭潭」，以免停在距離較遠的湖岸入口。</p>
+            <a class="secondary-button mt-7 no-underline" href={mapsURL} target="_blank" rel="noreferrer">開啟 Google 地圖 <span aria-hidden="true">↗</span></a>
+            <div class="transport-map">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3659.8499326722845!2d120.48071!3d23.465876999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e9458614570cb%3A0xfde645383820da8b!2z5YWw5r2t5pyI5b2x5r2t5b-D!5e0!3m2!1szh-TW!2stw!4v1785487820079!5m2!1szh-TW!2stw"
+                width="600"
+                height="450"
+                title="蘭潭月影潭心 Google 地圖"
+                allowfullscreen
+                loading="lazy"
+                referrerpolicy="strict-origin-when-cross-origin"
+              ></iframe>
+            </div>
+          </div>
+
+          <div class="space-y-8">
+            <article class="timeline-item">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="route-badge">車站</span>
+                <h3 class="display-serif text-2xl text-white">從臺鐵嘉義車站出發</h3>
+              </div>
+              <p class="mt-3 leading-7 text-white/65">在市區公車站轉乘往蘭潭方向的路線，於「月影潭心」站下車，步行短距離即可到達。官方資料曾列綠線／綠 A 或市區 1／1A 等路線，編號與班次仍請以當日電子站牌或公車系統為準。</p>
+            </article>
+
+            <article class="timeline-item">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="route-badge">高鐵</span>
+                <h3 class="display-serif text-2xl text-white">從高鐵嘉義站出發</h3>
+              </div>
+              <p class="mt-3 leading-7 text-white/65">先搭 BRT 前往臺鐵嘉義站後站，再步行至市區公車轉乘點，改搭往月影潭心的班車。另一種走法是在嘉義公園一帶轉乘往蘭潭方向路線，適合把嘉義公園排進同一天。</p>
+            </article>
+
+            <article class="timeline-item">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="route-badge">自駕</span>
+                <h3 class="display-serif text-2xl text-white">開車與機車</h3>
+              </div>
+              <p class="mt-3 leading-7 text-white/65">從嘉義市區沿小雅路往蘭潭方向行駛，接近湖區後依「月影潭心」與停車標誌進入。傍晚彎道路段常有慢行車輛、行人及自行車，請降低車速。</p>
+            </article>
+
+            <article class="timeline-item">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="route-badge">單車</span>
+                <h3 class="display-serif text-2xl text-white">自行車環潭</h3>
+              </div>
+              <p class="mt-3 leading-7 text-white/65">蘭潭周邊適合騎行，但部分路段有坡度與車流。建議白天完成環潭，傍晚在月影潭心停留；入夜後使用前後車燈與反光裝備。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="plan" class="border-y border-white/10 bg-[#10251f] py-24 md:py-32" aria-labelledby="plan-title">
+        <div class="site-shell">
+          <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+            <div>
+              <div class="eyebrow">YOUR LOCAL PLAN</div>
+              <h2 id="plan-title" class="section-title">把想去的點收進本機清單</h2>
+            </div>
+            <div class="lg:justify-self-end">
+              <p class="section-copy">勾選後會自動儲存在目前瀏覽器的 localStorage，不需登入、不上傳伺服器。換瀏覽器或清除網站資料後，清單會重設。</p>
+              <button id="clearPlan" class="mt-4 text-sm font-bold text-[#d3ad70] underline decoration-white/20 underline-offset-4" type="button">清空本機清單</button>
+            </div>
+          </div>
+
+          <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3" id="planList">
+            <label class="check-card"><input type="checkbox" data-plan-id="moon-heart" /><span><strong class="text-white">月影潭心</strong><small class="mt-1 block leading-6 text-white/55">看結構、走進作品、拍夜間光影。</small></span></label>
+            <label class="check-card"><input type="checkbox" data-plan-id="fountain" /><span><strong class="text-white">蘭潭音樂噴泉</strong><small class="mt-1 block leading-6 text-white/55">到場前先確認當晚場次與維護公告。</small></span></label>
+            <label class="check-card"><input type="checkbox" data-plan-id="lake-walk" /><span><strong class="text-white">湖畔散步</strong><small class="mt-1 block leading-6 text-white/55">安排日落前的湖風與觀景時間。</small></span></label>
+            <label class="check-card"><input type="checkbox" data-plan-id="back-trail" /><span><strong class="text-white">蘭潭後山步道</strong><small class="mt-1 block leading-6 text-white/55">適合白天健行，雨後注意泥濘。</small></span></label>
+            <label class="check-card"><input type="checkbox" data-plan-id="chiayi-park" /><span><strong class="text-white">嘉義公園與射日塔</strong><small class="mt-1 block leading-6 text-white/55">可與蘭潭串成城市東側半日線。</small></span></label>
+            <label class="check-card"><input type="checkbox" data-plan-id="food" /><span><strong class="text-white">嘉義小吃</strong><small class="mt-1 block leading-6 text-white/55">火雞肉飯、涼麵與文化路夜市擇一。</small></span></label>
+          </div>
+        </div>
+      </section>
+
+      <section id="gallery" class="site-shell py-24 md:py-32" aria-labelledby="gallery-title">
+        <div class="mb-12 grid gap-6 lg:grid-cols-2 lg:items-end">
+          <div>
+            <div class="eyebrow">PHOTO WALL</div>
+            <h2 id="gallery-title" class="section-title">蘭潭不是一種藍</h2>
+          </div>
+          <p class="section-copy lg:justify-self-end">點擊照片可放大。所有圖片已下載到專案並轉為 WebP，不在訪客瀏覽時調用第三方圖床。</p>
+        </div>
+        <div class="gallery-grid">
+          {gallery.map((image) => (
+            <button class="gallery-item" type="button" data-gallery-src={image.src} data-gallery-alt={image.alt} data-gallery-title={image.title} aria-label={`放大照片：${image.title}`}>
+              <img src={image.src} alt={image.alt} width={image.width} height={image.height} loading="lazy" decoding="async" />
+              <span class="gallery-caption"><strong class="display-serif text-xl">{image.title}</strong><span aria-hidden="true">＋</span></span>
+            </button>
+          ))}
+        </div>
+      </section>
+
+      <dialog id="lightbox" class="lightbox" aria-labelledby="lightboxTitle">
+        <div class="relative">
+          <img id="lightboxImage" src="/images/moonheart-main.webp" alt="" />
+          <button id="lightboxClose" class="absolute right-4 top-4 grid h-11 w-11 place-items-center rounded-full bg-black/65 text-2xl text-white" type="button" aria-label="關閉照片">×</button>
+        </div>
+        <div class="flex items-center justify-between gap-4 p-4 md:p-5">
+          <p id="lightboxTitle" class="display-serif text-lg text-white"></p>
+          <span class="text-xs tracking-[0.12em] text-white/45">ESC 關閉</span>
+        </div>
+      </dialog>
+
+      <section id="food" class="border-y border-white/10 bg-[#0b1f19] py-24 md:py-32" aria-labelledby="food-title">
+        <div class="site-shell">
+          <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <div class="eyebrow">NEARBY FOOD</div>
+              <h2 id="food-title" class="section-title">周邊美食，留給嘉義的味道</h2>
+            </div>
+            <p class="section-copy lg:justify-self-end">湖區本身不是密集商圈，最穩妥的安排是先在市區吃，或看完夜景後回到文化路一帶。以下以品類規劃，不綁定容易變動的店家營業時間。</p>
+          </div>
+          <div class="mt-12 grid gap-7 sm:grid-cols-2 lg:grid-cols-4">
+            <article class="food-card"><div class="text-xs tracking-[0.16em] text-[#d3ad70]">CHIAYI CLASSIC</div><h3 class="display-serif mt-3 text-2xl text-white">火雞肉飯</h3><p class="mt-3 leading-7 text-white/60">適合在進蘭潭前解決正餐。市區選擇多，可按排隊時間與停車便利度決定。</p></article>
+            <article class="food-card"><div class="text-xs tracking-[0.16em] text-[#d3ad70]">LOCAL TEXTURE</div><h3 class="display-serif mt-3 text-2xl text-white">嘉義涼麵</h3><p class="mt-3 leading-7 text-white/60">以寬麵、白醋或美乃滋風味形成獨特地方吃法，適合白天行程。</p></article>
+            <article class="food-card"><div class="text-xs tracking-[0.16em] text-[#d3ad70]">NIGHT MARKET</div><h3 class="display-serif mt-3 text-2xl text-white">文化路夜市</h3><p class="mt-3 leading-7 text-white/60">看完點燈後回市區吃小吃，路線直觀，也能把甜點與宵夜一次排入。</p></article>
+            <article class="food-card"><div class="text-xs tracking-[0.16em] text-[#d3ad70]">PICNIC IDEA</div><h3 class="display-serif mt-3 text-2xl text-white">簡單野餐</h3><p class="mt-3 leading-7 text-white/60">可先在市區準備飲品與輕食，垃圾自行帶走；作品與步道周邊不生火。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="nearby" class="site-shell py-24 md:py-32" aria-labelledby="nearby-title">
+        <div class="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+          <div>
+            <div class="eyebrow">AROUND LANTAN</div>
+            <h2 id="nearby-title" class="section-title">周邊景點，組成半日或一日</h2>
+            <p class="section-copy mt-6">不要把月影潭心當成孤立打卡點。它更適合成為嘉義東側自然與城市文化路線的最後一站。</p>
+          </div>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <article class="info-card"><div class="info-label">湖畔</div><h3 class="info-value">蘭潭音樂噴泉</h3><p class="mt-3 leading-7 text-white/60">與月影潭心相鄰，適合在同一時段等候夜間水景；場次先查官方公告。</p></article>
+            <article class="info-card"><div class="info-label">自然</div><h3 class="info-value">蘭潭後山步道</h3><p class="mt-3 leading-7 text-white/60">林蔭、坡道與城市近郊視野兼具，建議白天前往並準備飲水。</p></article>
+            <article class="info-card"><div class="info-label">城市綠地</div><h3 class="info-value">嘉義公園・射日塔</h3><p class="mt-3 leading-7 text-white/60">可先逛嘉義公園，再向東前往蘭潭，將城市歷史與湖景排在一起。</p></article>
+            <article class="info-card"><div class="info-label">木造街區</div><h3 class="info-value">檜意森活村</h3><p class="mt-3 leading-7 text-white/60">適合上午或午後拍木造建築，傍晚再移動到月影潭心看點燈。</p></article>
+          </div>
+        </div>
+      </section>
+
+      <section id="card-maker" class="border-y border-white/10 bg-[#10251f] py-24 md:py-32" aria-labelledby="card-title">
+        <div class="site-shell">
+          <div class="grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
+            <div>
+              <div class="eyebrow">SOUVENIR CARD</div>
+              <h2 id="card-title" class="section-title">把你看到的光，做成景點紀念卡</h2>
+            </div>
+            <div class="glass-panel rounded-2xl p-5 text-sm leading-7 text-white/65">
+              <strong class="text-white">照片僅保存在您的裝置。</strong> 選圖、拍照、文字與成品皆在瀏覽器本地 Canvas 處理，不上傳、不經伺服器。關閉頁面後，未下載的成品不會由本站保存。
+            </div>
+          </div>
+
+          <div class="mt-12 grid gap-7 lg:grid-cols-[0.7fr_1.3fr]">
+            <form id="cardForm" class="glass-panel h-fit rounded-[1.5rem] p-5 md:p-7" novalidate>
+              <div class="grid gap-5">
+                <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                  <div class="form-field">
+                    <label for="photoInput">拍照 / 從相簿選圖</label>
+                    <input class="form-control" id="photoInput" name="photo" type="file" accept="image/*" />
+                  </div>
+                  <div class="form-field">
+                    <label for="selfieInput">自拍</label>
+                    <input class="form-control" id="selfieInput" name="selfie" type="file" accept="image/*" capture="user" />
+                  </div>
+                </div>
+                <div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                  <div class="form-field">
+                    <label for="cardSize">尺寸</label>
+                    <select class="form-control" id="cardSize" name="size">
+                      <option value="square">1:1 方形</option>
+                      <option value="postcard">明信片直式</option>
+                      <option value="story">9:16 直式</option>
+                    </select>
+                  </div>
+                  <div class="form-field">
+                    <label for="cardStyle">風格</label>
+                    <select class="form-control" id="cardStyle" name="style">
+                      <option value="moon">月光墨綠</option>
+                      <option value="silver">霧銀編織</option>
+                      <option value="gold">暖金夕照</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="form-field">
+                  <label for="cardPlace">景點名</label>
+                  <input class="form-control" id="cardPlace" name="place" type="text" maxlength="24" value="蘭潭月影潭心" />
+                </div>
+                <div class="form-field">
+                  <label for="cardDate">日期文字</label>
+                  <input class="form-control" id="cardDate" name="date" type="text" maxlength="28" />
+                </div>
+                <div class="form-field">
+                  <label for="cardNote">短句</label>
+                  <input class="form-control" id="cardNote" name="note" type="text" maxlength="40" value="月、水與一段慢下來的路" />
+                </div>
+                <button id="downloadCard" class="primary-button mt-2 w-full" type="button">下載 PNG 紀念卡</button>
+                <p id="cardStatus" class="min-h-6 text-center text-sm text-[#d3ad70]" aria-live="polite"></p>
+              </div>
+            </form>
+            <div class="card-stage">
+              <canvas id="souvenirCanvas" width="1200" height="1200" aria-label="紀念卡預覽"></canvas>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="faq" class="site-shell py-24 md:py-32" aria-labelledby="faq-title">
+        <div class="grid gap-12 lg:grid-cols-[0.68fr_1.32fr]">
+          <div>
+            <div class="eyebrow">FAQ</div>
+            <h2 id="faq-title" class="section-title">常見問答</h2>
+            <p class="section-copy mt-6">景點為開放式公共空間；遇到維護、極端天氣或活動管制時，以現場及嘉義市官方資訊為準。</p>
+          </div>
+          <div>
+            {faqs.map((faq) => (
+              <details class="faq-item">
+                <summary>{faq.question}</summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-shell">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <a class="footer-brand-link" href="#top" aria-label="蘭潭月影潭心，回到頁首">
+              <img class="footer-mark" src="/favicon.svg" alt="" width="53" height="53" aria-hidden="true" />
+              <span>
+                <strong class="display-serif">蘭潭月影潭心</strong>
+                <small>LANTAN · CHIAYI</small>
+              </span>
+            </a>
+            <p>在湖光、晚風與鋁編光影之間，陪你安排一趟剛剛好的蘭潭散步。</p>
+            <span class="footer-location">嘉義市 · 蘭潭風景區</span>
+          </div>
+
+          <nav aria-label="探索內容">
+            <h2 class="footer-heading">探索內容</h2>
+            <ul class="footer-links">
+              <li><a href="#visit">行前資訊</a></li>
+              <li><a href="#transport">交通方式</a></li>
+              <li><a href="#gallery">蘭潭照片</a></li>
+              <li><a href="#nearby">周邊景點</a></li>
+            </ul>
+          </nav>
+
+          <nav aria-label="旅遊工具">
+            <h2 class="footer-heading">旅遊工具</h2>
+            <ul class="footer-links">
+              <li><a href="#plan">行程清單</a></li>
+              <li><a href="#card-maker">製作紀念卡</a></li>
+              <li><a href="#food">周邊美食</a></li>
+              <li><a href="#faq">常見問答</a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="footer-credits">
+          <div>
+            <span>照片來源與授權</span>
+            <p>lienyuan lee（CC BY 3.0）、Blowing Puffer Fish（CC BY 2.0）、Malcolm Koo（CC BY-SA 3.0）</p>
+          </div>
+          <div class="footer-meta">
+            <p>© 2026 蘭潭月影潭心</p>
+            <a href="#top">回到頁首 <span aria-hidden="true">↑</span></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script src="../scripts/site.ts"></script>
+  </body>
+</html>
