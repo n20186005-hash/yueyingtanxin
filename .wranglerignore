@@ -1,0 +1,19 @@
+# 部署到 Cloudflare Workers 時不需上傳的檔案
+node_modules
+.astro
+.wrangler
+.git
+.gitignore
+.wranglerignore
+README.md
+PHOTO-CREDITS.md
+SELF-CHECK.md
+src
+scripts
+*.ts
+*.config.ts
+*.config.mjs
+pnpm-lock.yaml
+pnpm-workspace.yaml
+tsconfig.json
+.DS_Store

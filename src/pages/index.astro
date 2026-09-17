@@ -1,25 +1,44 @@
 ---
 import '../styles/global.css';
 
-const title = '蘭潭月影潭心｜嘉義湖畔藝術散步指南';
-const description = '整理蘭潭月影潭心的交通、停車、費用、最佳時段、周邊美食與景點，並提供本機行程清單及照片紀念卡製作。';
-const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : undefined;
-const ogImageURL = Astro.site ? new URL('/images/og.webp', Astro.site).toString() : undefined;
+const title = '蘭潭月影潭心｜嘉義景點：開放時間、夜間點燈與交通攻略';
+const description = '嘉義蘭潭月影潭心的遊客指南：園區免費、全天候開放；附夜間點燈、音樂噴泉、即時天氣與一週預報、機場／公車／計程車交通方式、停車與周邊設施、季節策略與推薦路線。';
+const DOMAIN_NAME = 'yueyingtanxin.com';
+const canonicalURL = Astro.site ? new URL(Astro.url.pathname, Astro.site).toString() : `https://${DOMAIN_NAME}/`;
+const ogImageURL = Astro.site ? new URL('/images/og.webp', Astro.site).toString() : `https://${DOMAIN_NAME}/images/og.webp`;
 const mapsURL = 'https://www.google.com/maps/place/%E5%85%B0%E6%BD%AD%E6%9C%88%E5%BD%B1%E6%BD%AD%E5%BF%83/data=!4m7!3m6!1s0x346e9458614570cb:0xfde645383820da8b!8m2!3d23.465877!4d120.48071!16s%2Fg%2F11fxxxvc6p!19sChIJy3BFYViUbjQRi9ogODhF5v0?authuser=0&hl=zh-CN&rclk=1';
+const mapsShareURL = 'https://maps.app.goo.gl/TGMYG7zRJhNdXm1q9';
+const govtTourismURL = 'https://taiwan.net.tw/';
+const ratingValue = 4.2;
+const ratingCount = 4180;
+const ratingSynced = '2026 年 9 月';
+const nearbyLandmark1 = '蘭潭音樂噴泉';
+const nearbyLandmark2 = '檜意森活村';
 
 const attractionStructuredData = {
   '@context': 'https://schema.org',
   '@type': ['TouristAttraction', 'LocalBusiness'],
+  '@id': `https://${DOMAIN_NAME}/#attraction`,
   name: '蘭潭月影潭心',
-  alternateName: '月影潭心',
+  alternateName: ['月影潭心', '蘭潭', '嘉義市 蘭潭月影潭心'],
   description,
+  url: canonicalURL,
+  image: [ogImageURL],
+  isAccessibleForFree: true,
+  priceRange: '免費',
+  telephone: '+886-5-224-8917',
   address: {
     '@type': 'PostalAddress',
-    streetAddress: '鹿寮里紅毛埤187號之4（蘭潭風景區）',
+    streetAddress: '東區鹿寮里紅毛埤187-4號（蘭潭風景區）',
     addressLocality: '嘉義市',
-    addressRegion: '東區',
+    addressRegion: '臺灣省',
     postalCode: '600',
     addressCountry: 'TW',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 23.465877,
+    longitude: 120.48071,
   },
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
@@ -35,21 +54,25 @@ const attractionStructuredData = {
     opens: '00:00',
     closes: '23:59',
   },
-  isAccessibleForFree: true,
-  priceRange: '免費',
-  telephone: '+886-5-224-8917',
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: 4.2,
-    bestRating: 5,
-    worstRating: 1,
-  },
-  sameAs: [mapsURL],
-  ...(canonicalURL ? { url: canonicalURL } : {}),
-  ...(ogImageURL ? { image: [ogImageURL] } : {}),
+  hasMap: mapsShareURL,
+  sameAs: [mapsShareURL, mapsURL, govtTourismURL],
+};
+
+const breadcrumbStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: '臺灣', item: `https://${DOMAIN_NAME}/` },
+    { '@type': 'ListItem', position: 2, name: '嘉義市', item: `https://${DOMAIN_NAME}/` },
+    { '@type': 'ListItem', position: 3, name: '蘭潭月影潭心', item: `https://${DOMAIN_NAME}/#attraction` },
+  ],
 };
 
 const faqs = [
+  {
+    question: '蘭潭月影潭心什麼時候開放？點燈時間是幾點？',
+    answer: '月影潭心位於蘭潭風景區的戶外公共空間，免費且全天候開放、不設售票口。夜間照明一般於傍晚、日落前後亮起，建議在日落前後一次收集日景與夜景。確切亮燈與音樂噴泉場次會隨季節、維護與天候調整，出發前請以現場與嘉義市官方公告為準。',
+  },
   {
     question: '蘭潭月影潭心需要門票嗎？',
     answer: '不需要。月影潭心位於蘭潭風景區的戶外公共空間，可免費參觀；若周邊另有期間限定活動，費用以主辦單位公告為準。',
@@ -109,6 +132,11 @@ const gallery = [
     <meta name="viewport" content="width=device-width" />
     <meta name="theme-color" content="#071713" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="月影潭心" />
     <meta name="description" content={description} />
     <meta name="robots" content="index,follow,max-image-preview:large" />
     <title>{title}</title>
@@ -119,11 +147,13 @@ const gallery = [
     <meta property="og:description" content={description} />
     {canonicalURL && <meta property="og:url" content={canonicalURL} />}
     {ogImageURL && <meta property="og:image" content={ogImageURL} />}
+    {ogImageURL && <meta property="og:image:alt" content="蘭潭月影潭心 · 嘉義市蘭潭湖畔" />}
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     {ogImageURL && <meta name="twitter:image" content={ogImageURL} />}
     <script type="application/ld+json" set:html={JSON.stringify(attractionStructuredData)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbStructuredData)} />
     <script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)} />
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
     <script is:inline>
@@ -146,8 +176,11 @@ const gallery = [
           </span>
         </a>
         <nav class="nav-scroll flex items-center gap-1 overflow-x-auto text-sm" aria-label="頁面導覽">
-          <a class="rounded-full px-3 py-2 text-white/70 no-underline hover:bg-white/10 hover:text-white" href="#visit">行前資訊</a>
+          <a class="rounded-full px-3 py-2 text-white/70 no-underline hover:bg-white/10 hover:text-white" href="#weather">天氣</a>
+          <a class="rounded-full px-3 py-2 text-white/70 no-underline hover:bg-white/10 hover:text-white" href="#visit">行前</a>
           <a class="rounded-full px-3 py-2 text-white/70 no-underline hover:bg-white/10 hover:text-white" href="#transport">交通</a>
+          <a class="rounded-full px-3 py-2 text-white/70 no-underline hover:bg-white/10 hover:text-white" href="#services">設施</a>
+          <a class="rounded-full px-3 py-2 text-white/70 no-underline hover:bg-white/10 hover:text-white" href="#routes">路線</a>
           <a class="rounded-full px-3 py-2 text-white/70 no-underline hover:bg-white/10 hover:text-white" href="#gallery">照片</a>
           <a class="rounded-full px-3 py-2 text-white/70 no-underline hover:bg-white/10 hover:text-white" href="#card-maker">紀念卡</a>
         </nav>
@@ -159,8 +192,8 @@ const gallery = [
         <img class="hero-image" src="/images/moonheart-main.webp" alt="嘉義蘭潭月影潭心鋁編公共藝術" width="1920" height="1440" fetchpriority="high" />
         <div class="hero-orbit" aria-hidden="true"></div>
         <div class="site-shell hero-content">
-          <div class="eyebrow">嘉義 · 蘭潭湖畔公共藝術</div>
-          <h1 id="hero-title" class="hero-title">月影<span>潭心</span></h1>
+          <div class="eyebrow">嘉義市 · 蘭潭湖畔公共藝術</div>
+          <h1 id="hero-title" class="hero-title">蘭潭月影<span>潭心</span></h1>
           <p class="hero-lead">沿著銀白色鋁編走進湖風、樹影與夜色之間。這不是一座只能遠觀的雕塑，而是一條讓人慢下來、穿行其中的光影路徑。</p>
           <div class="mt-6 flex flex-wrap gap-2" aria-label="景點摘要">
             <span class="pill">免費參觀</span>
@@ -174,13 +207,50 @@ const gallery = [
         </div>
       </section>
 
+      <section id="reviews" class="rating-band" aria-labelledby="reviews-title">
+        <div class="site-shell">
+          <div class="eyebrow">GOOGLE 地圖用戶評價</div>
+          <h2 id="reviews-title" class="section-title">來自訪客的真實評分</h2>
+          <div class="rating-summary">
+            <div class="rating-badge">
+              <span class="rating-number">{ratingValue}</span>
+              <span class="rating-stars" aria-hidden="true">★★★★★</span>
+              <span class="rating-scale">/ 5</span>
+            </div>
+            <div class="rating-meta">
+              <div class="rating-count">{ratingCount.toLocaleString('en-US')} 則 Google 地圖用戶評價</div>
+              <p class="rating-synced">評分與評價數同步自谷歌地圖（Google Maps）用戶評價 · {ratingSynced} · <a href={mapsShareURL} target="_blank" rel="noopener noreferrer">點擊查看谷歌地圖全部評價 <span aria-hidden="true">↗</span></a></p>
+            </div>
+          </div>
+          <p class="review-source">同步自 Google 地圖用戶評價，同步時間 {ratingSynced}；版權歸原作者與 Google 地圖所有。</p>
+          <a class="primary-button no-underline mt-5" href={mapsShareURL} target="_blank" rel="noopener noreferrer">在谷歌地圖查看全部評價 <span aria-hidden="true">↗</span></a>
+        </div>
+      </section>
+
+      <section id="weather" class="site-shell py-24 md:py-32 weather-section" aria-labelledby="weather-title">
+        <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div>
+            <div class="eyebrow">LIVE WEATHER · 即時天氣</div>
+            <h2 id="weather-title" class="section-title">出門前，先看蘭潭天色</h2>
+          </div>
+          <p class="section-copy lg:justify-self-end">天氣直接影響湖面光影與夜間舒適度。下方為蘭潭月影潭心所在地的即時氣溫、降水機率與未來一週趨勢，幫你判斷要不要帶傘、要不要多帶一件外套。</p>
+        </div>
+
+        <div id="weatherWidget" class="weather-widget" aria-live="polite">
+          <div class="weather-loading">天氣資料讀取中…</div>
+        </div>
+      </section>
+
       <section class="site-shell py-24 md:py-32" aria-labelledby="story-title">
         <div class="grid items-center gap-10 lg:grid-cols-[0.92fr_1.08fr] lg:gap-16">
           <div>
-            <div class="eyebrow">THE ARTWORK</div>
-            <h2 id="story-title" class="section-title">一座可以走進去的湖畔月光</h2>
-            <p class="section-copy mt-6">「月影潭心」由嘉義出生的藝術家王文志創作，以鋁片編織出延伸、起伏的有機結構。作品把「月影」、湖心水紋與「談心」的諧音放在同一個空間裡，遠看像銀色山脊，走進去則像穿過一片被光切開的森林。</p>
+            <div class="eyebrow">ABOUT · 關於景點</div>
+            <h2 id="story-title" class="section-title">關於蘭潭月影潭心</h2>
+            <nav class="breadcrumb" aria-label="所在位置">蘭潭月影潭心 <span aria-hidden="true">›</span> 嘉義市 <span aria-hidden="true">›</span> 臺灣省 <span aria-hidden="true">›</span> 臺灣</nav>
+            <p class="section-copy mt-6">歡迎來到蘭潭月影潭心，這裡即是「月影潭心」的核心景點，位於嘉義市東區的蘭潭風景區。作為嘉義東側湖畔的公共藝術地標，月影潭心是旅人走訪這片水域時的主要停留點。</p>
+            <p class="section-copy mt-4">「月影潭心」由嘉義出生的藝術家王文志創作，以鋁片編織出延伸、起伏的有機結構。作品把「月影」、湖心水紋與「談心」的諧音放在同一個空間裡，遠看像銀色山脊，走進去則像穿過一片被光切開的森林。</p>
             <p class="section-copy mt-4">一側以階梯連接，另一側設有斜坡動線；白天能看見網格影子落在地面，入夜後燈光讓整座作品像漂浮在蘭潭邊的發光植物。</p>
+            <p class="section-copy mt-4">造訪蘭潭月影潭心時，也能順遊周邊地標，包含{nearbyLandmark1}與{nearbyLandmark2}，串成嘉義東側的半日或一日路線。</p>
             <div class="mt-8 grid grid-cols-2 gap-4">
               <div class="border-l border-[#d3ad70]/50 pl-4">
                 <div class="text-xs tracking-[0.16em] text-white/45">藝術家</div>
@@ -193,9 +263,33 @@ const gallery = [
             </div>
           </div>
           <figure class="relative overflow-hidden rounded-[2rem] border border-white/10">
-            <img class="story-photo h-full w-full" src="/images/lantan-cloudy.webp" alt="雲天下的蘭潭湖景" width="1800" height="1201" loading="lazy" decoding="async" />
+            <img class="story-photo h-full w-full" src="/images/lantan-cloudy.webp" alt="蘭潭月影潭心周邊的雲天蘭潭湖景（嘉義市）" width="1800" height="1201" loading="lazy" decoding="async" />
             <figcaption class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/80 to-transparent p-6 pt-20 text-sm text-white/75">先看湖，再看作品；月影潭心的魅力來自它與蘭潭地景放在一起時的尺度感。</figcaption>
           </figure>
+        </div>
+      </section>
+
+      <section id="history" class="site-shell py-24 md:py-32" aria-labelledby="history-title">
+        <div class="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+          <div>
+            <div class="eyebrow">HISTORY &amp; LEGEND</div>
+            <h2 id="history-title" class="section-title">蘭潭與月影潭心的來歷</h2>
+            <p class="section-copy mt-6">理解一處水域，先理解它與城市的關係。蘭潭不只是風景，也是嘉義城市發展與供水史上的重要角色。</p>
+          </div>
+          <div class="space-y-6">
+            <article class="prose-block">
+              <h3 class="display-serif text-2xl text-white">蘭潭：從埤塘到城市水源</h3>
+              <p class="section-copy mt-3">蘭潭又稱紅毛埤，早年即為嘉義近郊重要的蓄水埤塘。日治時期闢建為嘉義市水道的水源之一（蘭潭貯水池），自此與城市日常用水緊密相連；今日的蘭潭風景區，則把這片水域轉化為市民與旅人共享的開放綠地。</p>
+            </article>
+            <article class="prose-block">
+              <h3 class="display-serif text-2xl text-white">月影潭心：湖畔的公共藝術</h3>
+              <p class="section-copy mt-3">月影潭心為嘉義市推動的公共藝術作品，由在地藝術家王文志以鋁編創作，把「月影」、湖心水紋與「談心」的諧音收進同一道作品。它不佔據展廳，而是沿著湖岸展開，成為蘭潭新世代的地標。</p>
+            </article>
+            <article class="prose-block">
+              <h3 class="display-serif text-2xl text-white">地名與意境</h3>
+              <p class="section-copy mt-3">「蘭潭」一名民間有多種說法，本站採中性轉述，不作定論；而「月影潭心」的動人處，在於它把看湖這件事變成一種慢下來的儀式——月映潭心、風過林梢，是這片水域留給所有人的共同風景。</p>
+            </article>
+          </div>
         </div>
       </section>
 
@@ -266,13 +360,39 @@ const gallery = [
         </div>
       </section>
 
+      <section id="services" class="border-y border-white/10 bg-[#0b1f19] py-24 md:py-32" aria-labelledby="services-title">
+        <div class="site-shell">
+          <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <div class="eyebrow">VISITOR SERVICES</div>
+              <h2 id="services-title" class="section-title">訪客服務與周邊設施</h2>
+            </div>
+            <p class="section-copy lg:justify-self-end">以下以「類型」說明周邊可取得的服務，不推薦特定店家，方便你依當下需求與預算自行判斷。實際營業與位置請以現場與官方資訊為準。</p>
+          </div>
+          <div class="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <article class="info-card"><div class="info-label">如廁</div><h3 class="info-value">公共廁所</h3><p class="mt-3 leading-7 text-white/60">風景區與主要停車區設有公共廁所，開放狀況依現場管理為準；抵達後先以停車場附設設施為優先。</p></article>
+            <article class="info-card"><div class="info-label">停車</div><h3 class="info-value">路邊與場域停車</h3><p class="mt-3 leading-7 text-white/60">路邊與風景區停車空間並存，部分免費；假日傍晚易滿位，請依現場標線與告示停放。</p></article>
+            <article class="info-card"><div class="info-label">餐飲</div><h3 class="info-value">市區與回程用餐</h3><p class="mt-3 leading-7 text-white/60">湖區本身非密集商圈，建議市區或回程用餐；可參考周邊美食以品類規劃，不綁定單一店家。</p></article>
+            <article class="info-card"><div class="info-label">住宿</div><h3 class="info-value">市區旅宿選擇</h3><p class="mt-3 leading-7 text-white/60">嘉義市區有商旅、民宿與青年旅館等多元選擇，可依預算與交通位置挑選；住市區再搭車往蘭潭較有彈性。</p></article>
+            <article class="info-card"><div class="info-label">補給</div><h3 class="info-value">便利商店 / 商超</h3><p class="mt-3 leading-7 text-white/60">市區與往蘭潭幹道沿途有連鎖便利商店，可補給飲水、防曬、雨具與簡易糧食。</p></article>
+            <article class="info-card"><div class="info-label">能源</div><h3 class="info-value">加油與充電</h3><p class="mt-3 leading-7 text-white/60">市區與主要幹道設有加油站與電動車充電站；電動車出發前請先確認樁位與車型相容規格。</p></article>
+            <article class="info-card"><div class="info-label">醫療</div><h3 class="info-value">市區醫療資源</h3><p class="mt-3 leading-7 text-white/60">市區有醫療院所與藥局；湖區現場以基礎自我照顧為主，慢性與緊急需求仍回市區處理。</p></article>
+            <article class="info-card"><div class="info-label">自行車</div><h3 class="info-value">公共自行車租借</h3><p class="mt-3 leading-7 text-white/60">市區部分據點提供公共自行車，可串接環潭路線；租借點與樁位請以當日系統為準。</p></article>
+          </div>
+        </div>
+      </section>
+
       <section id="transport" class="site-shell py-24 md:py-32" aria-labelledby="transport-title">
         <div class="grid gap-12 lg:grid-cols-[0.72fr_1.28fr]">
           <div>
             <div class="eyebrow">GETTING THERE</div>
-            <h2 id="transport-title" class="section-title">詳細交通，不必先猜轉乘方式</h2>
+            <h2 id="transport-title" class="section-title">位置與如何前往月影潭心（嘉義市）</h2>
             <p class="section-copy mt-6">導航時請直接開啟「蘭潭月影潭心」Google 地圖地點頁面，不要只搜尋「蘭潭」，以免停在距離較遠的湖岸入口。</p>
             <a class="secondary-button mt-7 no-underline" href={mapsURL} target="_blank" rel="noreferrer">開啟 Google 地圖 <span aria-hidden="true">↗</span></a>
+            <div class="mt-5 space-y-2 text-sm leading-7 text-white/55">
+              <p>📍 600 嘉義市東區鹿寮里紅毛埤 187-4 號（蘭潭風景區）</p>
+              <p>☎ 電話：<a class="underline decoration-white/25 underline-offset-2 hover:text-white" href="tel:+886-5-224-8917">+886-5-224-8917</a></p>
+            </div>
             <div class="transport-map">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3659.8499326722845!2d120.48071!3d23.465876999999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x346e9458614570cb%3A0xfde645383820da8b!2z5YWw5r2t5pyI5b2x5r2t5b-D!5e0!3m2!1szh-TW!2stw!4v1785487820079!5m2!1szh-TW!2stw"
@@ -284,15 +404,24 @@ const gallery = [
                 referrerpolicy="strict-origin-when-cross-origin"
               ></iframe>
             </div>
+            <p class="mt-5 text-sm leading-7 text-white/55">官方區域旅遊資訊請參考 <a class="underline decoration-white/25 underline-offset-2 hover:text-white" href={govtTourismURL} target="_blank" rel="noopener noreferrer">臺灣觀光資訊網（Taiwan Tourism）<span aria-hidden="true"> ↗</span></a>。</p>
           </div>
 
           <div class="space-y-8">
             <article class="timeline-item">
               <div class="flex flex-wrap items-center gap-3">
-                <span class="route-badge">車站</span>
+                <span class="route-badge">機場</span>
+                <h3 class="display-serif text-2xl text-white">從機場到蘭潭</h3>
+              </div>
+              <p class="mt-3 leading-7 text-white/65">離嘉義最近的民用航空場為<strong class="text-white/85">臺南機場</strong>，也可經<strong class="text-white/85">高雄小港機場</strong>或<strong class="text-white/85">臺北松山／桃園機場</strong>轉乘高鐵。落地後先前往高鐵嘉義站或臺鐵嘉義站，再依下方大眾運輸前往；行李多或同行者眾時，從嘉義車站直接搭計程車最省轉乘。</p>
+            </article>
+
+            <article class="timeline-item">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="route-badge">臺鐵</span>
                 <h3 class="display-serif text-2xl text-white">從臺鐵嘉義車站出發</h3>
               </div>
-              <p class="mt-3 leading-7 text-white/65">在市區公車站轉乘往蘭潭方向的路線，於「月影潭心」站下車，步行短距離即可到達。官方資料曾列綠線／綠 A 或市區 1／1A 等路線，編號與班次仍請以當日電子站牌或公車系統為準。</p>
+              <p class="mt-3 leading-7 text-white/65">於市區公車站轉乘往蘭潭方向的路線，在「月影潭心」站下車後短距離步行抵達。路線編號與班次仍請以當日電子站牌或公車系統為準，避免依舊文章時間前往。</p>
             </article>
 
             <article class="timeline-item">
@@ -300,23 +429,144 @@ const gallery = [
                 <span class="route-badge">高鐵</span>
                 <h3 class="display-serif text-2xl text-white">從高鐵嘉義站出發</h3>
               </div>
-              <p class="mt-3 leading-7 text-white/65">先搭 BRT 前往臺鐵嘉義站後站，再步行至市區公車轉乘點，改搭往月影潭心的班車。另一種走法是在嘉義公園一帶轉乘往蘭潭方向路線，適合把嘉義公園排進同一天。</p>
+              <p class="mt-3 leading-7 text-white/65">先搭 BRT 到臺鐵嘉義站後站，再步行至市區公車轉乘點改搭往月影潭心的班車；或在嘉義公園一帶轉乘往蘭潭方向路線，方便把嘉義公園排進同一天。</p>
+            </article>
+
+            <article class="timeline-item">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="route-badge">公車</span>
+                <h3 class="display-serif text-2xl text-white">市區公車怎麼搭</h3>
+              </div>
+              <p class="mt-3 leading-7 text-white/65">嘉義市區公車以嘉義車站為樞紐，往蘭潭方向的部分路線會經過「月影潭心」站。建議先用官方公車 App 或電子站牌查「即時到站」再決定候車點；假日班次可能減班，請預留緩衝時間。</p>
+            </article>
+
+            <article class="timeline-item">
+              <div class="flex flex-wrap items-center gap-3">
+                <span class="route-badge">計程車</span>
+                <h3 class="display-serif text-2xl text-white">計程車與網約車</h3>
+              </div>
+              <p class="mt-3 leading-7 text-white/65">從臺鐵／高鐵嘉義站叫車最直達，導航目的地請設「蘭潭月影潭心」，避免只搜「蘭潭」停在較遠湖岸。車資依跳表或平台計費，離峰與夜間可能加價；回程可在作品附近叫車，留意假日傍晚等候較久。</p>
             </article>
 
             <article class="timeline-item">
               <div class="flex flex-wrap items-center gap-3">
                 <span class="route-badge">自駕</span>
-                <h3 class="display-serif text-2xl text-white">開車與機車</h3>
+                <h3 class="display-serif text-2xl text-white">開車、機車與自行車</h3>
               </div>
-              <p class="mt-3 leading-7 text-white/65">從嘉義市區沿小雅路往蘭潭方向行駛，接近湖區後依「月影潭心」與停車標誌進入。傍晚彎道路段常有慢行車輛、行人及自行車，請降低車速。</p>
+              <p class="mt-3 leading-7 text-white/65">從嘉義市區沿小雅路往蘭潭方向行駛，接近湖區後依「月影潭心」與停車標誌進入；傍晚彎道常有慢行車、行人與自行車，請降速。蘭潭周邊適合騎行，但部分路段有坡度與車流，建議白天環潭、入夜開前後車燈與反光裝備。</p>
             </article>
+          </div>
+        </div>
+      </section>
 
-            <article class="timeline-item">
-              <div class="flex flex-wrap items-center gap-3">
-                <span class="route-badge">單車</span>
-                <h3 class="display-serif text-2xl text-white">自行車環潭</h3>
-              </div>
-              <p class="mt-3 leading-7 text-white/65">蘭潭周邊適合騎行，但部分路段有坡度與車流。建議白天完成環潭，傍晚在月影潭心停留；入夜後使用前後車燈與反光裝備。</p>
+      <section id="season" class="site-shell py-24 md:py-32" aria-labelledby="season-title">
+        <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+          <div>
+            <div class="eyebrow">SEASONAL STRATEGY</div>
+            <h2 id="season-title" class="section-title">按季節安排你的蘭潭行</h2>
+          </div>
+          <p class="section-copy lg:justify-self-end">下表整理嘉義地區常年氣候與蘭潭水域的觀察經驗，協助你判斷水位、能見度與生物活動。實際天氣請以即時預報與官方警戒為準。</p>
+        </div>
+
+        <div class="season-table-wrap mt-12">
+          <table class="season-table">
+            <thead>
+              <tr><th>季節</th><th>氣候特徵</th><th>水質 / 水位</th><th>野生動植物</th><th>遊覽建議</th></tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">春<br /><small>3–5 月</small></th>
+                <td>氣溫回暖，午後易有對流雷陣雨，日夜溫差明顯。</td>
+                <td>水位穩定，水質多為平穩狀態。</td>
+                <td>渡冬水鳥逐漸減少，昆蟲與兩棲類活動增加。</td>
+                <td>適合白天遊覽；午後留意突如其來陣雨，隨身帶輕量雨具。</td>
+              </tr>
+              <tr>
+                <th scope="row">夏<br /><small>6–8 月</small></th>
+                <td>高溫高濕，午後雷陣雨頻繁；7–9 月為颱風季。</td>
+                <td>強降雨可能使短期濁度上升、水位波動。</td>
+                <td>綠意最盛，但高溫時段生物多避蔭。</td>
+                <td>清晨或傍晚前往，加強防曬與防蚊；颱風警報期間勿前往。</td>
+              </tr>
+              <tr>
+                <th scope="row">秋<br /><small>9–11 月</small></th>
+                <td>暑氣漸退，天氣相對穩定、能見度佳。</td>
+                <td>水位回落平穩，水色通常較清。</td>
+                <td>適合觀察水鳥與湖岸植物，光線柔和。</td>
+                <td>最適合攝影與長時間散步；把握連續晴天安排全日行程。</td>
+              </tr>
+              <tr>
+                <th scope="row">冬<br /><small>12–2 月</small></th>
+                <td>東北季風強、湖畔風冷，晴天時日照溫暖。</td>
+                <td>水位偏低平穩，水質多清。</td>
+                <td>部分水鳥度冬數量較多，是賞鳥時機。</td>
+                <td>著保暖衣物、白天前往；夜間點燈注意保暖與防風。</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="season-note">氣候概況參考嘉義地區長期氣候資料（多年平均），僅供行程規劃；即時天氣請見上方即時天氣模組，極端天氣以官方警戒為準。</p>
+        </div>
+      </section>
+
+      <section id="routes" class="border-y border-white/10 bg-[#10251f] py-24 md:py-32" aria-labelledby="routes-title">
+        <div class="site-shell">
+          <div class="grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
+            <div>
+              <div class="eyebrow">SUGGESTED ROUTES</div>
+              <h2 id="routes-title" class="section-title">推薦遊覽路線</h2>
+            </div>
+            <p class="section-copy lg:justify-self-end">提供半日與全日兩種通用節奏，以及依出行組成調整的三種路線，方便你直接套用或微調。</p>
+          </div>
+
+          <div class="mt-12 grid gap-6 lg:grid-cols-2">
+            <article class="route-card">
+              <div class="route-card-head"><span class="route-tag">半日</span><h3 class="display-serif text-2xl text-white">湖畔光影半日</h3></div>
+              <ol class="route-steps">
+                <li>下午抵達，先於湖畔散步、找觀景點。</li>
+                <li>日落前走到月影潭心，看鋁編結構在斜光下的影子。</li>
+                <li>停留至點燈，拍夜間光影。</li>
+                <li>回市區用餐，或視場次順游音樂噴泉。</li>
+              </ol>
+            </article>
+            <article class="route-card">
+              <div class="route-card-head"><span class="route-tag">全日</span><h3 class="display-serif text-2xl text-white">城市東側全日</h3></div>
+              <ol class="route-steps">
+                <li>上午逛嘉義公園與射日塔，或檜意森活村。</li>
+                <li>市區午餐，品嘗火雞肉飯等地方小吃。</li>
+                <li>下午走蘭潭後山步道，再回到湖畔。</li>
+                <li>月影潭心點燈 + 音樂噴泉（若場次），回夜市收尾。</li>
+              </ol>
+            </article>
+          </div>
+
+          <h3 class="route-subtitle mt-14">依人群調整的三條路線</h3>
+          <div class="mt-6 grid gap-6 lg:grid-cols-3">
+            <article class="route-card">
+              <div class="route-card-head"><span class="route-tag">親子家庭</span><h3 class="display-serif text-xl text-white">平坦、短停留</h3></div>
+              <ul class="route-steps">
+                <li>以主要鋪面與觀景區為主，不走陡坡步道。</li>
+                <li>停留時間短、節奏慢，預留休息與補給。</li>
+                <li>可結合音樂噴泉與野餐（垃圾自行帶走）。</li>
+                <li>不攀爬作品，保持與結構的安全距離。</li>
+              </ul>
+            </article>
+            <article class="route-card">
+              <div class="route-card-head"><span class="route-tag">攝影自然</span><h3 class="display-serif text-xl text-white">藍調與長曝光</h3></div>
+              <ul class="route-steps">
+                <li>優先秋、冬晴天與穩定天氣。</li>
+                <li>藍調時刻（日落後約 20–30 分）拍結構與天光。</li>
+                <li>夜間帶腳架做長曝光，注意防風。</li>
+                <li>清晨可拍平靜湖面與水鳥。</li>
+              </ul>
+            </article>
+            <article class="route-card">
+              <div class="route-card-head"><span class="route-tag">低體力 / 無障礙</span><h3 class="display-serif text-xl text-white">日間、少步行</h3></div>
+              <ul class="route-steps">
+                <li>走斜坡入口與主要觀景區鋪面，避開後山陡坡。</li>
+                <li>安排在白天、縮短步行距離與停留。</li>
+                <li>就近停車，減少搬運與步行負擔。</li>
+                <li>雨後留意鋪面與坡道濕滑。</li>
+              </ul>
             </article>
           </div>
         </div>
@@ -397,8 +647,8 @@ const gallery = [
         <div class="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
           <div>
             <div class="eyebrow">AROUND LANTAN</div>
-            <h2 id="nearby-title" class="section-title">周邊景點，組成半日或一日</h2>
-            <p class="section-copy mt-6">不要把月影潭心當成孤立打卡點。它更適合成為嘉義東側自然與城市文化路線的最後一站。</p>
+            <h2 id="nearby-title" class="section-title">月影潭心周邊地標與景點</h2>
+            <p class="section-copy mt-6">不要把月影潭心當成孤立打卡點。它更適合成為嘉義東側自然與城市文化路線的最後一站，周邊包含{nearbyLandmark1}與{nearbyLandmark2}等可串聯的地標。</p>
           </div>
           <div class="grid gap-4 sm:grid-cols-2">
             <article class="info-card"><div class="info-label">湖畔</div><h3 class="info-value">蘭潭音樂噴泉</h3><p class="mt-3 leading-7 text-white/60">與月影潭心相鄰，適合在同一時段等候夜間水景；場次先查官方公告。</p></article>
@@ -475,6 +725,34 @@ const gallery = [
         </div>
       </section>
 
+      <section id="responsibility" class="site-shell py-24 md:py-32" aria-labelledby="responsibility-title">
+        <div class="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+          <div>
+            <div class="eyebrow">CONSERVATION</div>
+            <h2 id="responsibility-title" class="section-title">湖岸保育與訪客責任</h2>
+            <p class="section-copy mt-6">蘭潭是嘉義重要的水源與生態場域。把這片水域留給下一代，靠的是每位訪客的小動作。</p>
+          </div>
+          <div class="space-y-6">
+            <article class="prose-block">
+              <h3 class="display-serif text-2xl text-white">守住水源與生態</h3>
+              <p class="section-copy mt-3">請勿戲水、垂釣或丟棄垃圾，所有垃圾自行帶走；避免驚擾水鳥與其他野生動物，讓蘭潭維持它應有的清澈與安靜。</p>
+            </article>
+            <article class="prose-block">
+              <h3 class="display-serif text-2xl text-white">愛護公共藝術</h3>
+              <p class="section-copy mt-3">月影潭心以鋁編構成，請不攀爬、不塗鴉、不觸碰結構外緣；與作品保持安全距離，也能看見更完整的光影。</p>
+            </article>
+            <article class="prose-block">
+              <h3 class="display-serif text-2xl text-white">與天氣和鄰里共處</h3>
+              <p class="section-copy mt-3">颱風、強風、暴雨期間避免前往；夜間降低音量，不開強光直射居民與動物。出發前查看即時天氣與官方公告，是對自己與環境都負責的做法。</p>
+            </article>
+            <article class="prose-block">
+              <h3 class="display-serif text-2xl text-white">一點科普</h3>
+              <p class="section-copy mt-3">蘭潭做為城市供水的水庫，其水質與水位受降雨與集水區管理影響；湖域為底棲生物、水鳥與周邊林相提供棲地。認識這層關係，會讓「來看一眼月光」更有分量。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
       <section id="faq" class="site-shell py-24 md:py-32" aria-labelledby="faq-title">
         <div class="grid gap-12 lg:grid-cols-[0.68fr_1.32fr]">
           <div>
@@ -491,6 +769,27 @@ const gallery = [
             ))}
           </div>
         </div>
+      </section>
+
+      <section id="sources" class="site-shell py-24 md:py-32 sources" aria-labelledby="sources-title">
+        <div class="eyebrow">SOURCES · 資料來源</div>
+        <h2 id="sources-title" class="section-title">資料來源與引用</h2>
+        <ul class="sources-list">
+          <li>
+            <div class="sources-head"><strong>評價</strong><span class="sources-tag">同步時間 {ratingSynced}</span></div>
+            <p>同步自 Google 地圖用戶評價，同步時間 {ratingSynced}；版權歸原作者與 Google 地圖所有。</p>
+            <a href={mapsShareURL} target="_blank" rel="noopener noreferrer">在谷歌地圖查看全部評價 <span aria-hidden="true">↗</span></a>
+          </li>
+          <li>
+            <div class="sources-head"><strong>官方旅遊資訊</strong></div>
+            <p>區域旅遊與官方公告請以政府觀光單位為準。</p>
+            <a href={govtTourismURL} target="_blank" rel="noopener noreferrer">臺灣觀光資訊網（Taiwan Tourism）<span aria-hidden="true"> ↗</span></a>
+          </li>
+          <li>
+            <div class="sources-head"><strong>照片來源與授權</strong></div>
+            <p>lienyuan lee（CC BY 3.0）、Blowing Puffer Fish（CC BY 2.0）、Malcolm Koo（CC BY-SA 3.0）。</p>
+          </li>
+        </ul>
       </section>
     </main>
 
@@ -512,10 +811,15 @@ const gallery = [
           <nav aria-label="探索內容">
             <h2 class="footer-heading">探索內容</h2>
             <ul class="footer-links">
+              <li><a href="#weather">即時天氣</a></li>
               <li><a href="#visit">行前資訊</a></li>
               <li><a href="#transport">交通方式</a></li>
+              <li><a href="#services">訪客設施</a></li>
+              <li><a href="#routes">遊覽路線</a></li>
               <li><a href="#gallery">蘭潭照片</a></li>
               <li><a href="#nearby">周邊景點</a></li>
+              <li><a href="#history">歷史傳說</a></li>
+              <li><a href="#responsibility">湖岸保育</a></li>
             </ul>
           </nav>
 
@@ -544,5 +848,13 @@ const gallery = [
     </footer>
 
     <script src="../scripts/site.ts"></script>
+    <script src="../scripts/weather.ts"></script>
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
   </body>
 </html>

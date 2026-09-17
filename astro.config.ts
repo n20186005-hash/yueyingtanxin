@@ -3,7 +3,7 @@ import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
 // 網域確定後，只需在此填入完整 HTTPS 網址；留空仍可正常建置。
-const site = '';
+const site = 'https://yueyingtanxin.com';
 
 export default defineConfig({
   site: site || undefined,

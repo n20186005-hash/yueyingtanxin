@@ -887,6 +887,467 @@ dialog.lightbox::backdrop {
   }
 }
 
+.rating-band {
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(211, 173, 112, 0.05), transparent);
+}
+
+.rating-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.rating-badge {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.rating-number {
+  font-family: ui-serif, "Noto Serif TC", "Songti TC", Georgia, serif;
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--paper);
+}
+
+.rating-stars {
+  color: var(--gold);
+  font-size: 1.4rem;
+  letter-spacing: 0.1em;
+}
+
+.rating-scale {
+  color: rgba(220, 231, 226, 0.5);
+  font-size: 0.9rem;
+}
+
+.rating-meta {
+  min-width: 0;
+}
+
+.rating-count {
+  color: rgba(220, 231, 226, 0.82);
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.rating-synced {
+  margin-top: 0.4rem;
+  max-width: 42rem;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  color: rgba(220, 231, 226, 0.5);
+}
+
+.rating-synced a {
+  color: var(--gold);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.review-source {
+  margin-top: 1.5rem;
+  max-width: 46rem;
+  border-left: 2px solid var(--gold);
+  padding-left: 1rem;
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: rgba(220, 231, 226, 0.6);
+}
+
+.breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1.2rem;
+  font-size: 0.82rem;
+  color: rgba(220, 231, 226, 0.55);
+}
+
+.breadcrumb span {
+  color: var(--gold);
+}
+
+.sources {
+  border-top: 1px solid var(--line);
+}
+
+.sources-list {
+  display: grid;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  list-style: none;
+  padding: 0;
+}
+
+.sources-list li {
+  border: 1px solid var(--line);
+  border-radius: 1.2rem;
+  padding: 1.3rem 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.sources-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--paper);
+  font-size: 1.05rem;
+}
+
+.sources-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: rgba(220, 231, 226, 0.5);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.2rem 0.6rem;
+}
+
+.sources-list p {
+  margin-top: 0.6rem;
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(220, 231, 226, 0.62);
+}
+
+.sources-list a {
+  display: inline-block;
+  margin-top: 0.7rem;
+  color: var(--gold);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.sources-list a:hover {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+/* ===== 即時天氣模組 ===== */
+.weather-widget {
+  margin-top: 2.5rem;
+}
+
+.weather-loading {
+  padding: 2.5rem;
+  text-align: center;
+  color: rgba(220, 231, 226, 0.5);
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.weather-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: 1fr;
+}
+
+.weather-current {
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  padding: 1.75rem;
+  background: linear-gradient(180deg, rgba(211, 173, 112, 0.08), transparent);
+}
+
+.weather-now-top {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.weather-emoji {
+  font-size: 3.2rem;
+  line-height: 1;
+}
+
+.weather-temp {
+  font-family: ui-serif, "Noto Serif TC", "Songti TC", Georgia, serif;
+  font-size: clamp(2.6rem, 7vw, 3.6rem);
+  font-weight: 600;
+  line-height: 1;
+  color: var(--paper);
+}
+
+.weather-cond {
+  color: rgba(220, 231, 226, 0.78);
+  font-size: 1rem;
+}
+
+.weather-stats {
+  margin-top: 1.25rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem 1rem;
+}
+
+.weather-stat {
+  border-top: 1px solid var(--line);
+  padding-top: 0.6rem;
+}
+
+.weather-stat span {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  color: rgba(220, 231, 226, 0.45);
+}
+
+.weather-stat strong {
+  color: rgba(220, 231, 226, 0.9);
+  font-weight: 600;
+  font-size: 0.98rem;
+}
+
+.weather-advice-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+}
+
+.advice-block,
+.advice-risk {
+  border: 1px solid var(--line);
+  border-radius: 1.2rem;
+  padding: 1rem 1.1rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.advice-risk {
+  border-color: rgba(220, 90, 90, 0.55);
+  background: rgba(200, 60, 60, 0.12);
+}
+
+.advice-risk--ok {
+  border-color: rgba(120, 180, 140, 0.4);
+  background: rgba(120, 180, 140, 0.08);
+}
+
+.advice-title {
+  margin: 0 0 0.55rem;
+  font-size: 0.82rem;
+  letter-spacing: 0.05em;
+  font-weight: 600;
+  color: var(--gold);
+}
+
+.advice-risk .advice-title {
+  color: #ff9a9a;
+}
+
+.advice-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.5rem;
+}
+
+.advice-list li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+  font-size: 0.92rem;
+  line-height: 1.6;
+  color: rgba(220, 231, 226, 0.84);
+}
+
+.advice-icon {
+  flex: none;
+  color: var(--gold);
+}
+
+.advice-risk-item {
+  color: #ffd0d0;
+}
+
+.advice-ok {
+  margin: 0;
+  font-size: 0.88rem;
+  color: rgba(160, 200, 170, 0.85);
+}
+
+.weather-forecast {
+  margin-top: 1.25rem;
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  padding: 1.25rem 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  overflow-x: auto;
+}
+
+.forecast-row {
+  display: flex;
+  gap: 0.5rem;
+  min-width: max-content;
+}
+
+.forecast-day {
+  flex: 1 0 84px;
+  text-align: center;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+  padding: 0.85rem 0.5rem;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.forecast-day .fd-name {
+  font-size: 0.8rem;
+  color: rgba(220, 231, 226, 0.7);
+}
+
+.forecast-day .fd-emoji {
+  font-size: 1.8rem;
+  margin: 0.35rem 0;
+}
+
+.forecast-day .fd-temp {
+  font-size: 0.85rem;
+  color: rgba(220, 231, 226, 0.88);
+}
+
+.forecast-day .fd-pop {
+  font-size: 0.72rem;
+  color: var(--gold);
+  margin-top: 0.2rem;
+}
+
+.weather-error {
+  padding: 1.5rem;
+  text-align: center;
+  color: rgba(220, 231, 226, 0.55);
+  border: 1px dashed var(--line);
+  border-radius: 1.2rem;
+}
+
+/* ===== 歷史 / 科普 散文區塊 ===== */
+.prose-block {
+  border-left: 2px solid var(--line);
+  padding-left: 1.1rem;
+}
+
+.prose-block h3 {
+  color: var(--paper);
+}
+
+/* ===== 季節策略表 ===== */
+.season-table-wrap {
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  padding: 0.5rem;
+  overflow-x: auto;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.season-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 720px;
+}
+
+.season-table th,
+.season-table td {
+  border-bottom: 1px solid var(--line);
+  padding: 0.9rem 1rem;
+  text-align: left;
+  vertical-align: top;
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: rgba(220, 231, 226, 0.72);
+}
+
+.season-table thead th {
+  color: var(--gold);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+}
+
+.season-table tbody th[scope="row"] {
+  color: var(--paper);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.season-table tbody th small {
+  display: block;
+  font-weight: 400;
+  color: rgba(220, 231, 226, 0.5);
+  font-size: 0.75rem;
+}
+
+.season-table tbody tr:last-child th,
+.season-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.season-note {
+  margin-top: 0.9rem;
+  font-size: 0.78rem;
+  color: rgba(220, 231, 226, 0.45);
+  padding: 0 0.5rem;
+  line-height: 1.7;
+}
+
+/* ===== 遊覽路線 ===== */
+.route-card {
+  border: 1px solid var(--line);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.route-card-head {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.route-tag {
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  border: 1px solid var(--gold);
+  border-radius: 999px;
+  padding: 0.2rem 0.7rem;
+  white-space: nowrap;
+}
+
+.route-steps {
+  margin-top: 1rem;
+  padding-left: 1.1rem;
+  list-style: decimal;
+  color: rgba(220, 231, 226, 0.7);
+  display: grid;
+  gap: 0.5rem;
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+
+.route-steps li::marker {
+  color: var(--gold);
+}
+
+.route-subtitle {
+  color: var(--paper);
+  font-family: ui-serif, "Noto Serif TC", "Songti TC", Georgia, serif;
+  font-size: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  .weather-grid {
+    grid-template-columns: 1.1fr 1.9fr;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

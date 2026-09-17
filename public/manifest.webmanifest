@@ -1,0 +1,27 @@
+{
+  "name": "蘭潭月影潭心｜嘉義湖畔藝術散步指南",
+  "short_name": "月影潭心",
+  "description": "整理蘭潭月影潭心的交通、停車、費用、最佳時段、周邊美食與景點，並提供本機行程清單及照片紀念卡製作。",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#071713",
+  "theme_color": "#071713",
+  "lang": "zh-Hant-TW",
+  "orientation": "portrait-primary",
+  "categories": ["travel", "navigation"],
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}
