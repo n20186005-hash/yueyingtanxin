@@ -1,0 +1,126 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = '月影潭心夜景與拍照｜嘉義蘭潭點燈時間';
+const description =
+  '月影潭心夜景與拍照指南：最佳拍攝時段、藍調時刻、夜間點燈與器材建議，規劃蘭潭夜景散步行程。';
+const path = '/night-view/';
+const breadcrumbName = '夜景與拍照';
+
+const faqs = [
+  {
+    question: '月影潭心晚上好看嗎？',
+    answer: '好看。月影潭心的鋁編結構入夜後會亮起燈光，與蘭潭水面相映，是白天看不到的風景。建議日落前抵達，一次收集日景、夕照與點燈後的夜景。',
+  },
+  {
+    question: '什麼時候拍最好？',
+    answer: '藍調時刻（日落後約 20–30 分鐘）通常是拍攝黃金窗：天還有層次、作品與燈光已亮，湖面也能映出倒影。夜間可再拍長曝光與水面光跡。',
+  },
+  {
+    question: '月影潭心點燈時間是幾點？',
+    answer: '月影潭心為藝術裝置照明，一般於傍晚、日落前後亮起，並非像音樂噴泉那樣有固定的每場時刻表。想拍點燈，請安排日落前後到場並停留至入夜。',
+  },
+  {
+    question: '適合帶什麼攝影器材？',
+    answer: '手機也能拍出好照片；若要更穩定，可帶小型腳架做長曝光。夜間湖畔風大、易濕滑，注意防風與器材安全，不攀爬作品外緣。',
+  },
+];
+---
+
+<Layout title={title} description={description} path={path} breadcrumbName={breadcrumbName} faqs={faqs}>
+  <section class="site-shell pt-28 pb-16 md:pt-36 md:pb-20" aria-labelledby="page-title">
+    <nav class="breadcrumb mb-6" aria-label="所在位置">蘭潭月影潭心 <span aria-hidden="true">›</span> <span class="text-[#d3ad70]">夜景與拍照</span></nav>
+    <div class="eyebrow">NIGHT VIEW · 夜景</div>
+    <h1 id="page-title" class="hero-title !text-5xl !leading-tight md:!text-6xl">月影潭心<br />夜景與拍照</h1>
+    <p class="section-copy mt-6 max-w-3xl">月影潭心的魅力在於「光」。這頁整理最佳拍攝時段、藍調時刻、點燈與器材建議，幫你把夜間那一幕帶回家。</p>
+  </section>
+
+  <section class="site-shell pb-20" aria-labelledby="best-title">
+    <div class="eyebrow">BEST TIME</div>
+    <h2 id="best-title" class="section-title">最佳拍攝時段</h2>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+      <article class="info-card">
+        <div class="info-label">日落前 1 小時</div>
+        <div class="info-value text-2xl">暖光斜照</div>
+        <p class="mt-3 text-sm leading-6 text-white/55">看鋁編結構在地面投下網格影子。</p>
+      </article>
+      <article class="info-card">
+        <div class="info-label">藍調時刻</div>
+        <div class="info-value text-2xl">日落後 20–30 分</div>
+        <p class="mt-3 text-sm leading-6 text-white/55">天有層次、燈已亮，最容易出片。</p>
+      </article>
+      <article class="info-card">
+        <div class="info-label">入夜後</div>
+        <div class="info-value text-2xl">長曝光</div>
+        <p class="mt-3 text-sm leading-6 text-white/55">拍水面光跡與作品發光細節。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="border-y border-white/10 bg-[#0b1f19] py-24 md:py-32" aria-labelledby="tips-title">
+    <div class="site-shell">
+      <div class="eyebrow">PHOTO TIPS</div>
+      <h2 id="tips-title" class="section-title">夜間拍照建議</h2>
+      <div class="mt-12 grid gap-6 lg:grid-cols-2">
+        <article class="glass-panel rounded-[1.5rem] p-6 md:p-8">
+          <h3 class="display-serif text-2xl text-white">構圖：讓水做鏡子</h3>
+          <p class="mt-3 leading-7 text-white/65">尋找低角度，把蘭潭水面當作倒影面，讓作品與燈光在湖上複製一次；微風靜止時效果最好。</p>
+        </article>
+        <article class="glass-panel rounded-[1.5rem] p-6 md:p-8">
+          <h3 class="display-serif text-2xl text-white">器材：穩定優先</h3>
+          <p class="mt-3 leading-7 text-white/65">手機也能拍；若要更乾淨，帶小型腳架做長曝光。夜間湖畔風大，注意防風與器材安全。</p>
+        </article>
+        <article class="glass-panel rounded-[1.5rem] p-6 md:p-8">
+          <h3 class="display-serif text-2xl text-white">光線：別開強光</h3>
+          <p class="mt-3 leading-7 text-white/65">拍攝時避免手電筒或手機強光直射作品與其他遊客；低光源反而能保留現場氣氛。</p>
+        </article>
+        <article class="glass-panel rounded-[1.5rem] p-6 md:p-8">
+          <h3 class="display-serif text-2xl text-white">安全：不攀爬</h3>
+          <p class="mt-3 leading-7 text-white/65">作品以鋁編構成，請保持安全距離、不攀爬；雨後鋪面與坡道易濕滑，留意腳步。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell py-24 md:py-32" aria-labelledby="nearby-night-title">
+    <div class="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+      <div>
+        <div class="eyebrow">NIGHT PLAN</div>
+        <h2 id="nearby-night-title" class="section-title">夜景順遊安排</h2>
+        <p class="section-copy mt-6">把月影潭心點燈與鄰近音樂噴泉、市區夜市串成同一晚的節奏。</p>
+      </div>
+      <div class="space-y-6">
+        <article class="prose-block">
+          <h3 class="display-serif text-2xl text-white">夜晚動線</h3>
+          <p class="section-copy mt-3">下午抵達 → 湖畔散步 → 日落前看結構影子 → 停留到點燈 → 視場次順游音樂噴泉 → 回市區吃文化路夜市。一日之內完成日與夜兩種風景。</p>
+        </article>
+        <article class="prose-block">
+          <h3 class="display-serif text-2xl text-white">保暖與防蚊</h3>
+          <p class="section-copy mt-3">湖畔夜間風大、蚊蟲多，建議穿防滑鞋、帶薄外套與防蚊用品。水舞場次請先查官方公告，詳見 <a class="underline decoration-white/25 underline-offset-2 hover:text-white" href="/water-show/">音樂噴泉水舞專頁</a>。</p>
+        </article>
+      </div>
+    </div>
+    <div class="mt-10 flex flex-wrap gap-4">
+      <a class="primary-button no-underline" href="/water-show/">音樂噴泉水舞場次 <span aria-hidden="true">↗</span></a>
+      <a class="secondary-button no-underline" href="/opening-hours/">開放時間與門票 <span aria-hidden="true">↗</span></a>
+    </div>
+  </section>
+
+  <section id="faq" class="site-shell py-24 md:py-32" aria-labelledby="faq-title">
+    <div class="grid gap-12 lg:grid-cols-[0.68fr_1.32fr]">
+      <div>
+        <div class="eyebrow">FAQ</div>
+        <h2 id="faq-title" class="section-title">常見問答</h2>
+        <p class="section-copy mt-6">點燈與場次會隨季節、維護與天候調整，以現場及官方資訊為準。</p>
+      </div>
+      <div>
+        {faqs.map((faq) => (
+          <details class="faq-item">
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

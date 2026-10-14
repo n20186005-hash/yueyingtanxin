@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = '蘭潭音樂噴泉水舞時間2026｜嘉義月影潭心';
+const description =
+  '2026 蘭潭音樂噴泉冬令場次、最近恢復展演日期與官方公告連結；說明場次隨季節調整，出發前以嘉義市官方公告為準。';
+const path = '/water-show/';
+const breadcrumbName = '音樂噴泉水舞';
+
+const govtTourismURL = 'https://taiwan.net.tw/';
+
+const faqs = [
+  {
+    question: '2026 蘭潭音樂噴泉冬令場次是幾點？',
+    answer: '目前已公布的冬令（10 月至翌年 3 月）晚間場次為 18:30、19:30、20:30、21:30，每場約 15 分鐘，實際以現場播報為準。',
+  },
+  {
+    question: '蘭潭音樂噴泉夏令場次是幾點？',
+    answer: '夏令（4–9 月）場次通常較冬令為晚，具體時間會隨季節與活動調整。出發前請以嘉義市官方公告為準，不要只依舊文章的時間前往。',
+  },
+  {
+    question: '蘭潭音樂噴泉最近為什麼曾暫停？',
+    answer: '根據公開資訊，2026-02-25 因水位偏低，蘭潭音樂噴泉暫停展演；隨後於 2026-08-28 恢復展演。場次與展演狀態仍可能受水情、維護或天候影響。',
+  },
+  {
+    question: '月影潭心的點燈和音樂噴泉是一樣的嗎？',
+    answer: '不是。音樂噴泉屬於鄰近的「蘭潭音樂噴泉」設施，有固定晚間場次；月影潭心則是湖畔鋁編藝術裝置，夜間照明一般於日落前後亮起，兩者並不相同。',
+  },
+];
+---
+
+<Layout title={title} description={description} path={path} breadcrumbName={breadcrumbName} faqs={faqs}>
+  <section class="site-shell pt-28 pb-16 md:pt-36 md:pb-20" aria-labelledby="page-title">
+    <nav class="breadcrumb mb-6" aria-label="所在位置">蘭潭月影潭心 <span aria-hidden="true">›</span> <span class="text-[#d3ad70]">音樂噴泉水舞</span></nav>
+    <div class="eyebrow">2026 FOUNTAIN · 音樂噴泉</div>
+    <h1 id="page-title" class="hero-title !text-5xl !leading-tight md:!text-6xl">蘭潭音樂噴泉<br />水舞時間 2026</h1>
+    <p class="section-copy mt-6 max-w-3xl">月影潭心旁的蘭潭音樂噴泉，是許多遊客順遊的重點。場次會隨季節調整，以下為目前公開的時段與近期狀態；出發前請以官方公告為準。</p>
+  </section>
+
+  <section class="site-shell pb-20" aria-labelledby="winter-title">
+    <div class="eyebrow">WINTER SCHEDULE</div>
+    <h2 id="winter-title" class="section-title">冬令場次（10 月–翌年 3 月）</h2>
+    <div class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      {['18:30', '19:30', '20:30', '21:30'].map((time) => (
+        <article class="info-card text-center">
+          <div class="info-label">每晚場次</div>
+          <div class="info-value font-serif">{time}</div>
+          <p class="mt-3 text-sm leading-6 text-white/55">每場約 15 分鐘，實際以現場播報為準。</p>
+        </article>
+      ))}
+    </div>
+    <p class="season-note mt-6">夏令（4–9 月）場次通常較冬令為晚，詳細時間請以嘉義市官方公告為準。</p>
+  </section>
+
+  <section class="border-y border-white/10 bg-[#0b1f19] py-24 md:py-32" aria-labelledby="notice-title">
+    <div class="site-shell">
+      <div class="eyebrow">LATEST NOTICE · 最新公告</div>
+      <h2 id="notice-title" class="section-title">最近狀態與恢復展演</h2>
+      <ul class="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        <li class="glass-panel rounded-[1.5rem] p-6">
+          <div class="text-xs tracking-[0.16em] text-white/45">2026-02-25</div>
+          <p class="mt-3 leading-7 text-white/70">因水位偏低，蘭潭音樂噴泉暫停展演。</p>
+        </li>
+        <li class="glass-panel rounded-[1.5rem] p-6">
+          <div class="text-xs tracking-[0.16em] text-white/45">2026-08-28</div>
+          <p class="mt-3 leading-7 text-white/70">恢復展演。</p>
+        </li>
+        <li class="glass-panel rounded-[1.5rem] p-6">
+          <div class="text-xs tracking-[0.16em] text-white/45">本頁核對日期</div>
+          <p class="mt-3 leading-7 text-white/70">2026-10-14。場次與展演狀態仍可能調整。</p>
+        </li>
+      </ul>
+      <div class="mt-8 rounded-2xl border border-[#d3ad70]/30 bg-[#d3ad70]/10 p-5 text-sm leading-7 text-[#f0d9af]">
+        注意：音樂噴泉屬鄰近的「蘭潭音樂噴泉」，並非月影潭心藝術裝置的點燈時間；實際演出可能因天候或維護取消。水情、維修與活動資訊請以嘉義市官方公告為準。
+      </div>
+      <div class="mt-6 flex flex-wrap gap-4">
+        <a class="secondary-button no-underline" href={govtTourismURL} target="_blank" rel="noopener noreferrer">嘉義市官方公告與旅遊資訊 <span aria-hidden="true">↗</span></a>
+        <a class="primary-button no-underline" href="/opening-hours/">開放時間與門票 <span aria-hidden="true">↗</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="site-shell py-24 md:py-32" aria-labelledby="faq-title">
+    <div class="grid gap-12 lg:grid-cols-[0.68fr_1.32fr]">
+      <div>
+        <div class="eyebrow">FAQ</div>
+        <h2 id="faq-title" class="section-title">常見問答</h2>
+        <p class="section-copy mt-6">遇天候、水情或維護調整時，以官方公告與現場資訊為準。</p>
+      </div>
+      <div>
+        {faqs.map((faq) => (
+          <details class="faq-item">
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

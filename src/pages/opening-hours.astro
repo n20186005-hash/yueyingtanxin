@@ -1,0 +1,122 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const title = '蘭潭月影潭心開放時間與門票｜嘉義景點';
+const description =
+  '蘭潭月影潭心開放時間、門票與點燈說明：戶外公共空間全天候免費開放，夜間照明與音樂噴泉場次另計，出發前一次看懂。';
+const path = '/opening-hours/';
+const breadcrumbName = '開放時間與門票';
+
+const faqs = [
+  {
+    question: '蘭潭月影潭心幾點開放？',
+    answer: '月影潭心位於蘭潭風景區的戶外公共空間，免費且全天候開放，沒有固定入場時段與售票口。不過夜間光線、天氣與現場活動可能影響參觀體驗，建議在白天至入夜之間安排。',
+  },
+  {
+    question: '蘭潭月影潭心需要門票嗎？',
+    answer: '不需要。月影潭心是開放式的公共藝術空間，可免費參觀。若周邊另有期間限定活動，費用請以主辦單位現場公告為準。',
+  },
+  {
+    question: '月影潭心的點燈時間是幾點？',
+    answer: '月影潭心為藝術裝置照明，一般於傍晚、日落前後亮起，並非像音樂噴泉那樣有固定的每場時刻表。想一次收集日景與夜景，建議日落前抵達、停留到點燈後。',
+  },
+  {
+    question: '蘭潭音樂噴泉每天都有嗎？場次如何查？',
+    answer: '蘭潭音樂噴泉為鄰近設施，通常依季節安排晚間場次，但可能因維修、天候或活動調整。不要只依舊文章的時間前往，出發前請查看嘉義市官方最新公告，詳細冬令場次與最新恢復日期請見本站「音樂噴泉水舞」專頁。',
+  },
+];
+---
+
+<Layout title={title} description={description} path={path} breadcrumbName={breadcrumbName} faqs={faqs}>
+  <section class="site-shell pt-28 pb-16 md:pt-36 md:pb-20" aria-labelledby="page-title">
+    <nav class="breadcrumb mb-6" aria-label="所在位置">蘭潭月影潭心 <span aria-hidden="true">›</span> <span class="text-[#d3ad70]">開放時間與門票</span></nav>
+    <div class="eyebrow">BEFORE YOU GO · 行前資訊</div>
+    <h1 id="page-title" class="hero-title !text-5xl !leading-tight md:!text-6xl">蘭潭月影潭心<br />開放時間與門票</h1>
+    <p class="section-copy mt-6 max-w-3xl">月影潭心不是一間要排隊入場的展館，而是一處開放式湖畔公共空間。這頁幫你一次釐清最容易混淆的三件事：場域開放時間、夜間點燈、以及鄰近的音樂噴泉場次。</p>
+  </section>
+
+  <section class="site-shell pb-20" aria-label="重點摘要">
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+      <article class="info-card">
+        <div class="info-label">開放狀態</div>
+        <div class="info-value">全天候</div>
+        <p class="mt-3 text-sm leading-6 text-white/55">戶外公共空間，無固定入場時段。</p>
+      </article>
+      <article class="info-card">
+        <div class="info-label">門票 / 費用</div>
+        <div class="info-value">免費</div>
+        <p class="mt-3 text-sm leading-6 text-white/55">免預約、免購票，直接到訪。</p>
+      </article>
+      <article class="info-card">
+        <div class="info-label">夜間點燈</div>
+        <div class="info-value">日落前後</div>
+        <p class="mt-3 text-sm leading-6 text-white/55">藝術裝置照明，非固定每場時刻。</p>
+      </article>
+      <article class="info-card">
+        <div class="info-label">音樂噴泉</div>
+        <div class="info-value">場次制</div>
+        <p class="mt-3 text-sm leading-6 text-white/55">鄰近設施，詳見水舞專頁。</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="border-y border-white/10 bg-[#0b1f19] py-24 md:py-32" aria-labelledby="distinction-title">
+    <div class="site-shell">
+      <div class="eyebrow">注意 · 三件事要分清楚</div>
+      <h2 id="distinction-title" class="section-title">「開放時間」其實有三層意思</h2>
+      <div class="mt-12 grid gap-6 lg:grid-cols-3">
+        <article class="glass-panel rounded-[1.5rem] p-6 md:p-8">
+          <h3 class="display-serif text-2xl text-white">場域開放時間</h3>
+          <p class="mt-3 leading-7 text-white/65">蘭潭風景區與月影潭心所在區域為開放式公共空間，一般可全天候進入、免費參觀，沒有關閉時間或售票口。</p>
+        </article>
+        <article class="glass-panel rounded-[1.5rem] p-6 md:p-8">
+          <h3 class="display-serif text-2xl text-white">夜間點燈</h3>
+          <p class="mt-3 leading-7 text-white/65">月影潭心為藝術裝置，夜間照明通常於傍晚、日落前後亮起，依季節與天候而異，並非像音樂噴泉那樣有固定每場時刻表。</p>
+        </article>
+        <article class="glass-panel rounded-[1.5rem] p-6 md:p-8">
+          <h3 class="display-serif text-2xl text-white">音樂噴泉場次</h3>
+          <p class="mt-3 leading-7 text-white/65">蘭潭音樂噴泉為鄰近設施，通常依季節安排晚間場次，可能受維修或天候影響。完整冬令場次與最新公告請見 <a class="underline decoration-white/25 underline-offset-2 hover:text-white" href="/water-show/">音樂噴泉水舞專頁</a>。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="site-shell py-24 md:py-32" aria-labelledby="free-title">
+    <div class="grid gap-12 lg:grid-cols-[0.75fr_1.25fr]">
+      <div>
+        <div class="eyebrow">TICKET NOTE</div>
+        <h2 id="free-title" class="section-title">關於「免費」與資料庫欄位</h2>
+        <p class="section-copy mt-6">網路上部分觀光資料庫會保留「入場收費」等欄位，但現場為開放式公共空間、免費參觀。</p>
+      </div>
+      <div class="space-y-6">
+        <article class="prose-block">
+          <h3 class="display-serif text-2xl text-white">以現場與官方公告為準</h3>
+          <p class="section-copy mt-3">本站依現場可見狀態標註「免費、全天候開放」。若未來因活動或管理調整而需付費、管制或限時，請以嘉義市官方公告與現場告示為準，我們也會視公告更新本頁。</p>
+        </article>
+        <article class="prose-block">
+          <h3 class="display-serif text-2xl text-white">為什麼建議傍晚來</h3>
+          <p class="section-copy mt-3">因為月影潭心的魅力在於「光」：白天看鋁編結構在地面投下的影子，入夜後看裝置亮起、與蘭潭水面相映。日落前抵達、停留到點燈後，是 CP 值最高的安排。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" class="site-shell py-24 md:py-32" aria-labelledby="faq-title">
+    <div class="grid gap-12 lg:grid-cols-[0.68fr_1.32fr]">
+      <div>
+        <div class="eyebrow">FAQ</div>
+        <h2 id="faq-title" class="section-title">常見問答</h2>
+        <p class="section-copy mt-6">遇到維護、極端天氣或活動管制時，以現場及嘉義市官方資訊為準。</p>
+        <a class="primary-button mt-7 no-underline" href="/transport/">怎麼去？看交通與停車 <span aria-hidden="true">↗</span></a>
+      </div>
+      <div>
+        {faqs.map((faq) => (
+          <details class="faq-item">
+            <summary>{faq.question}</summary>
+            <p>{faq.answer}</p>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>

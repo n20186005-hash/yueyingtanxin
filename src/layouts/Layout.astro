@@ -1,0 +1,253 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  path: string;
+  breadcrumbName?: string;
+  faqs?: { question: string; answer: string }[];
+  noIndex?: boolean;
+}
+
+const { title, description, path, breadcrumbName, faqs, noIndex = false } = Astro.props;
+
+const DOMAIN_NAME = 'yueyingtanxin.com';
+const siteBase = Astro.site ? Astro.site.toString().replace(/\/$/, '') : `https://${DOMAIN_NAME}`;
+const canonicalURL = Astro.site ? new URL(path, Astro.site).toString() : `https://${DOMAIN_NAME}${path}`;
+const ogImageURL = Astro.site ? new URL('/images/og.webp', Astro.site).toString() : `https://${DOMAIN_NAME}/images/og.webp`;
+
+const mapsURL =
+  'https://www.google.com/maps/place/%E5%85%B0%E6%BD%AD%E6%9C%88%E5%BD%B1%E6%BD%AD%E5%BF%83/data=!4m7!3m6!1s0x346e9458614570cb:0xfde645383820da8b!8m2!3d23.465877!4d120.48071!16s%2Fg%2F11fxxxvc6p!19sChIJy3BFYViUbjQRi9ogODhF5v0?authuser=0&hl=zh-CN&rclk=1';
+const mapsShareURL = 'https://maps.app.goo.gl/TGMYG7zRJhNdXm1q9';
+const govtTourismURL = 'https://taiwan.net.tw/';
+
+const ratingValue = 4.2;
+const ratingCount = 4194;
+const ratingSynced = '2026 年 10 月';
+
+const isHome = path === '/';
+const anchor = isHome ? '' : '/';
+
+const attractionStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': ['TouristAttraction', 'LocalBusiness'],
+  '@id': `https://${DOMAIN_NAME}/#attraction`,
+  name: '蘭潭月影潭心',
+  alternateName: ['月影潭心', '蘭潭', '嘉義市 蘭潭月影潭心'],
+  description,
+  url: `https://${DOMAIN_NAME}/`,
+  image: [ogImageURL],
+  isAccessibleForFree: true,
+  priceRange: '免費',
+  telephone: '+886-5-224-8917',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: '東區鹿寮里紅毛埤187-4號（蘭潭風景區）',
+    addressLocality: '嘉義市',
+    addressRegion: '臺灣省',
+    postalCode: '600',
+    addressCountry: 'TW',
+  },
+  geo: {
+    '@type': 'GeoCoordinates',
+    latitude: 23.465877,
+    longitude: 120.48071,
+  },
+  openingHoursSpecification: {
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: [
+      'https://schema.org/Monday',
+      'https://schema.org/Tuesday',
+      'https://schema.org/Wednesday',
+      'https://schema.org/Thursday',
+      'https://schema.org/Friday',
+      'https://schema.org/Saturday',
+      'https://schema.org/Sunday',
+    ],
+    opens: '00:00',
+    closes: '23:59',
+  },
+  hasMap: mapsShareURL,
+  sameAs: [mapsShareURL, mapsURL, govtTourismURL],
+};
+
+const breadcrumbItems = [
+  { name: '臺灣', item: `https://${DOMAIN_NAME}/` },
+  { name: '嘉義市', item: `https://${DOMAIN_NAME}/` },
+  { name: '蘭潭月影潭心', item: `https://${DOMAIN_NAME}/#attraction` },
+];
+if (breadcrumbName) {
+  breadcrumbItems.push({ name: breadcrumbName, item: canonicalURL });
+}
+
+const breadcrumbStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbItems.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.name,
+    item: item.item,
+  })),
+};
+
+const faqStructuredData = faqs
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: faqs.map((faq) => ({
+        '@type': 'Question',
+        name: faq.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: faq.answer,
+        },
+      })),
+    }
+  : null;
+
+const navLinks = [
+  { href: 'weather', label: '天氣' },
+  { href: 'visit', label: '行前' },
+  { href: 'transport', label: '交通' },
+  { href: 'services', label: '設施' },
+  { href: 'routes', label: '路線' },
+  { href: 'gallery', label: '照片' },
+  { href: 'card-maker', label: '紀念卡' },
+];
+
+const guideLinks = [
+  { href: '/opening-hours/', label: '開放時間與門票' },
+  { href: '/water-show/', label: '音樂噴泉水舞' },
+  { href: '/transport/', label: '交通與停車' },
+  { href: '/night-view/', label: '夜景與拍照' },
+];
+
+const toolLinks = [
+  { href: 'plan', label: '行程清單' },
+  { href: 'card-maker', label: '製作紀念卡' },
+  { href: 'food', label: '周邊美食' },
+  { href: 'faq', label: '常見問答' },
+];
+---
+
+<!doctype html>
+<html lang="zh-Hant-TW">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#071713" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="/favicon.svg" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="月影潭心" />
+    <meta name="description" content={description} />
+    <meta name="robots" content={noIndex ? 'noindex,follow' : 'index,follow,max-image-preview:large'} />
+    <title>{title}</title>
+    {canonicalURL && <link rel="canonical" href={canonicalURL} />}
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="zh_TW" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    {canonicalURL && <meta property="og:url" content={canonicalURL} />}
+    {ogImageURL && <meta property="og:image" content={ogImageURL} />}
+    {ogImageURL && <meta property="og:image:alt" content="蘭潭月影潭心 · 嘉義市蘭潭湖畔" />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImageURL && <meta name="twitter:image" content={ogImageURL} />}
+    <script type="application/ld+json" set:html={JSON.stringify(attractionStructuredData)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbStructuredData)} />
+    {faqStructuredData && <script type="application/ld+json" set:html={JSON.stringify(faqStructuredData)} />}
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-HXM22WWPKP"></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-HXM22WWPKP');
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳到主要內容</a>
+
+    <header class="topbar">
+      <div class="site-shell flex h-16 items-center justify-between gap-5">
+        <a href={isHome ? '#top' : '/#top'} class="flex min-w-max items-center gap-2.5 no-underline" aria-label="月影潭心，回到頁首">
+          <img class="h-8 w-8 rounded-lg" src="/favicon.svg" alt="" width="32" height="32" aria-hidden="true" />
+          <span>
+            <span class="display-serif block text-lg font-semibold leading-none text-white">月影潭心</span>
+            <span class="brand-subtitle mt-1 block text-[0.58rem] leading-none tracking-[0.16em] text-white/45">LANTAN · CHIAYI</span>
+          </span>
+        </a>
+        <nav class="nav-scroll flex items-center gap-1 overflow-x-auto text-sm" aria-label="頁面導覽">
+          {navLinks.map((link) => (
+            <a class="rounded-full px-3 py-2 text-white/70 no-underline hover:bg-white/10 hover:text-white" href={`${anchor}#${link.href}`}>{link.label}</a>
+          ))}
+        </nav>
+      </div>
+    </header>
+
+    <main id="main">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="site-shell">
+        <div class="footer-main">
+          <div class="footer-brand">
+            <a class="footer-brand-link" href={isHome ? '#top' : '/#top'} aria-label="蘭潭月影潭心，回到頁首">
+              <img class="footer-mark" src="/favicon.svg" alt="" width="53" height="53" aria-hidden="true" />
+              <span>
+                <strong class="display-serif">蘭潭月影潭心</strong>
+                <small>LANTAN · CHIAYI</small>
+              </span>
+            </a>
+            <p>在湖光、晚風與鋁編光影之間，陪你安排一趟剛剛好的蘭潭散步。</p>
+            <span class="footer-location">嘉義市 · 蘭潭風景區</span>
+          </div>
+
+          <nav aria-label="探索內容">
+            <h2 class="footer-heading">探索內容</h2>
+            <ul class="footer-links">
+              {navLinks.map((link) => (
+                <li><a href={`${anchor}#${link.href}`}>{link.label}</a></li>
+              ))}
+            </ul>
+          </nav>
+
+          <nav aria-label="景點指南">
+            <h2 class="footer-heading">景點指南</h2>
+            <ul class="footer-links">
+              <li><a href="/">首頁總覽</a></li>
+              {guideLinks.map((link) => (
+                <li><a href={link.href}>{link.label}</a></li>
+              ))}
+            </ul>
+          </nav>
+        </div>
+
+        <div class="footer-credits">
+          <div>
+            <span>第三方獨立旅遊指南</span>
+            <p>本站為非營利、獨立製作的旅遊資訊指南，與嘉義市政府、蘭潭風景區及月影潭心管理單位無隸屬或合作關係。開放時間、水舞場次、交通與收費可能變動，請以官方公告與現場資訊為準。</p>
+          </div>
+          <div class="footer-meta">
+            <p>© 2026 蘭潭月影潭心</p>
+            <a href={isHome ? '#top' : '/#top'}>回到頁首 <span aria-hidden="true">↑</span></a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script is:inline>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js').catch(() => {});
+        });
+      }
+    </script>
+  </body>
+</html>
