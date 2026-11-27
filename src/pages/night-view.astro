@@ -1,5 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Sources from '../components/Sources.astro';
 
 const title = '月影潭心夜景與拍照｜嘉義蘭潭點燈時間';
 const description =
@@ -14,11 +15,11 @@ const faqs = [
   },
   {
     question: '什麼時候拍最好？',
-    answer: '藍調時刻（日落後約 20–30 分鐘）通常是拍攝黃金窗：天還有層次、作品與燈光已亮，湖面也能映出倒影。夜間可再拍長曝光與水面光跡。',
+    answer: '可在日落後觀察天色與現場照明；天空尚有層次、燈光已亮時較易兼顧兩者。藍調時段受季節、雲量影響，並非保證亮燈的時間表。夜間可再拍長曝光與水面光跡。',
   },
   {
     question: '月影潭心點燈時間是幾點？',
-    answer: '月影潭心為藝術裝置照明，一般於傍晚、日落前後亮起，並非像音樂噴泉那樣有固定的每場時刻表。想拍點燈，請安排日落前後到場並停留至入夜。',
+    answer: '月影潭心為藝術裝置照明，夜間有燈光變化，固定亮燈及熄燈時刻以現場告示為準，並非像音樂噴泉那樣有固定的每場時刻表。想拍點燈，請安排日落前後到場並停留至入夜。',
   },
   {
     question: '適合帶什麼攝影器材？',
@@ -29,11 +30,13 @@ const faqs = [
 
 <Layout title={title} description={description} path={path} breadcrumbName={breadcrumbName} faqs={faqs}>
   <section class="site-shell pt-28 pb-16 md:pt-36 md:pb-20" aria-labelledby="page-title">
-    <nav class="breadcrumb mb-6" aria-label="所在位置">蘭潭月影潭心 <span aria-hidden="true">›</span> <span class="text-[#d3ad70]">夜景與拍照</span></nav>
+    <nav class="breadcrumb mb-6" aria-label="所在位置"><a href="/">蘭潭月影潭心</a> <span aria-hidden="true">›</span> <span class="text-[#d3ad70]">夜景與拍照</span></nav>
     <div class="eyebrow">NIGHT VIEW · 夜景</div>
     <h1 id="page-title" class="hero-title !text-5xl !leading-tight md:!text-6xl">月影潭心<br />夜景與拍照</h1>
     <p class="section-copy mt-6 max-w-3xl">月影潭心的魅力在於「光」。這頁整理最佳拍攝時段、藍調時刻、點燈與器材建議，幫你把夜間那一幕帶回家。</p>
   </section>
+
+  <figure class="site-shell pb-12"><img class="w-full max-h-[30rem] rounded-2xl object-cover" src="/images/moonheart-main.webp" srcset="/images/responsive/moonheart-main-640.webp 640w, /images/responsive/moonheart-main-960.webp 960w" sizes="(min-width: 1024px) 960px, 100vw" width="960" height="720" loading="lazy" decoding="async" alt="月影潭心日間結構參考，夜間取景須依現場照明調整。" /><figcaption class="mt-3 text-sm leading-7 text-white/65">月影潭心日間結構參考，夜間取景須依現場照明調整。 <a href="/sources/">照片作者與授權</a></figcaption></figure>
 
   <section class="site-shell pb-20" aria-labelledby="best-title">
     <div class="eyebrow">BEST TIME</div>
@@ -46,8 +49,8 @@ const faqs = [
       </article>
       <article class="info-card">
         <div class="info-label">藍調時刻</div>
-        <div class="info-value text-2xl">日落後 20–30 分</div>
-        <p class="mt-3 text-sm leading-6 text-white/55">天有層次、燈已亮，最容易出片。</p>
+        <div class="info-value text-2xl">日落後觀察天色</div>
+        <p class="mt-3 text-sm leading-6 text-white/55">以天色仍有層次、現場燈光已亮時為佳。</p>
       </article>
       <article class="info-card">
         <div class="info-label">入夜後</div>
@@ -123,4 +126,5 @@ const faqs = [
       </div>
     </div>
   </section>
+  <Sources topic="night" />
 </Layout>

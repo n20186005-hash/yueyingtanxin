@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Sources from '../components/Sources.astro';
+import { sources } from '../data/sources';
 
 const title = '蘭潭音樂噴泉水舞時間2026｜嘉義月影潭心';
 const description =
@@ -7,35 +9,37 @@ const description =
 const path = '/water-show/';
 const breadcrumbName = '音樂噴泉水舞';
 
-const govtTourismURL = 'https://taiwan.net.tw/';
+const govtTourismURL = sources.fountain;
 
 const faqs = [
   {
     question: '2026 蘭潭音樂噴泉冬令場次是幾點？',
-    answer: '目前已公布的冬令（10 月至翌年 3 月）晚間場次為 18:30、19:30、20:30、21:30，每場約 15 分鐘，實際以現場播報為準。',
+    answer: '嘉義市觀光旅遊網列出的冬令（10 月至翌年 3 月）晚間場次為 18:30、19:30、20:30、21:30，依季節時刻表安排，現場如有停演公告則優先適用。',
   },
   {
     question: '蘭潭音樂噴泉夏令場次是幾點？',
-    answer: '夏令（4–9 月）場次通常較冬令為晚，具體時間會隨季節與活動調整。出發前請以嘉義市官方公告為準，不要只依舊文章的時間前往。',
+    answer: '嘉義市觀光旅遊網列夏令（4–9 月）每日 19:30、20:30、21:30 三場。出發前請以嘉義市官方公告為準，不要只依舊文章的時間前往。',
   },
   {
     question: '蘭潭音樂噴泉最近為什麼曾暫停？',
-    answer: '根據公開資訊，2026-02-25 因水位偏低，蘭潭音樂噴泉暫停展演；隨後於 2026-08-28 恢復展演。場次與展演狀態仍可能受水情、維護或天候影響。',
+    answer: '依嘉義市政府觀光新聞處在中央社訊息平台發布的 2026-08-27 訊息，2026-02-25 因水位偏低，蘭潭音樂噴泉暫停展演；隨後於 2026-08-28 恢復展演。場次與展演狀態仍可能受水情、維護或天候影響。',
   },
   {
     question: '月影潭心的點燈和音樂噴泉是一樣的嗎？',
-    answer: '不是。音樂噴泉屬於鄰近的「蘭潭音樂噴泉」設施，有固定晚間場次；月影潭心則是湖畔鋁編藝術裝置，夜間照明一般於日落前後亮起，兩者並不相同。',
+    answer: '不是。音樂噴泉屬於鄰近的「蘭潭音樂噴泉」設施，有固定晚間場次；月影潭心則是湖畔鋁編藝術裝置，夜間有燈光變化，固定啟閉時刻以現場告示為準，兩者並不相同。',
   },
 ];
 ---
 
 <Layout title={title} description={description} path={path} breadcrumbName={breadcrumbName} faqs={faqs}>
   <section class="site-shell pt-28 pb-16 md:pt-36 md:pb-20" aria-labelledby="page-title">
-    <nav class="breadcrumb mb-6" aria-label="所在位置">蘭潭月影潭心 <span aria-hidden="true">›</span> <span class="text-[#d3ad70]">音樂噴泉水舞</span></nav>
+    <nav class="breadcrumb mb-6" aria-label="所在位置"><a href="/">蘭潭月影潭心</a> <span aria-hidden="true">›</span> <span class="text-[#d3ad70]">音樂噴泉水舞</span></nav>
     <div class="eyebrow">2026 FOUNTAIN · 音樂噴泉</div>
     <h1 id="page-title" class="hero-title !text-5xl !leading-tight md:!text-6xl">蘭潭音樂噴泉<br />水舞時間 2026</h1>
     <p class="section-copy mt-6 max-w-3xl">月影潭心旁的蘭潭音樂噴泉，是許多遊客順遊的重點。場次會隨季節調整，以下為目前公開的時段與近期狀態；出發前請以官方公告為準。</p>
   </section>
+
+  <figure class="site-shell pb-12"><img class="w-full max-h-[30rem] rounded-2xl object-cover" src="/images/lantan-fountain.webp" srcset="/images/responsive/lantan-fountain-640.webp 640w, /images/responsive/lantan-fountain-960.webp 960w" sizes="(min-width: 1024px) 960px, 100vw" width="960" height="720" loading="lazy" decoding="async" alt="蘭潭音樂噴泉既有照片；場次依官方公告安排。" /><figcaption class="mt-3 text-sm leading-7 text-white/65">蘭潭音樂噴泉既有照片；場次依官方公告安排。 <a href="/sources/">照片作者與授權</a></figcaption></figure>
 
   <section class="site-shell pb-20" aria-labelledby="winter-title">
     <div class="eyebrow">WINTER SCHEDULE</div>
@@ -45,11 +49,11 @@ const faqs = [
         <article class="info-card text-center">
           <div class="info-label">每晚場次</div>
           <div class="info-value font-serif">{time}</div>
-          <p class="mt-3 text-sm leading-6 text-white/55">每場約 15 分鐘，實際以現場播報為準。</p>
+          <p class="mt-3 text-sm leading-6 text-white/55">依季節時刻表安排，現場如有停演公告則優先適用。</p>
         </article>
       ))}
     </div>
-    <p class="season-note mt-6">夏令（4–9 月）場次通常較冬令為晚，詳細時間請以嘉義市官方公告為準。</p>
+    <p class="season-note mt-6">夏令（4–9 月）：19:30、20:30、21:30。以上為官方景點頁的常態時刻，臨時停演公告優先。</p>
   </section>
 
   <section class="border-y border-white/10 bg-[#0b1f19] py-24 md:py-32" aria-labelledby="notice-title">
@@ -67,7 +71,7 @@ const faqs = [
         </li>
         <li class="glass-panel rounded-[1.5rem] p-6">
           <div class="text-xs tracking-[0.16em] text-white/45">本頁核對日期</div>
-          <p class="mt-3 leading-7 text-white/70">2026-10-14。場次與展演狀態仍可能調整。</p>
+          <p class="mt-3 leading-7 text-white/70">2026-11-26。場次與展演狀態仍可能調整。</p>
         </li>
       </ul>
       <div class="mt-8 rounded-2xl border border-[#d3ad70]/30 bg-[#d3ad70]/10 p-5 text-sm leading-7 text-[#f0d9af]">
@@ -97,4 +101,5 @@ const faqs = [
       </div>
     </div>
   </section>
+  <Sources topic="fountain" />
 </Layout>

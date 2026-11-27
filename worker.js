@@ -55,10 +55,7 @@ export default {
       return handleWeather(caches.default, ctx);
     }
 
-    let response = await env.ASSETS.fetch(request);
-    if (response.status === 404 && (request.headers.get('accept') || '').includes('text/html')) {
-      response = await env.ASSETS.fetch(new Request(`${url.origin}/index.html`));
-    }
-    return response;
+    // Static Astro pages must retain the asset binding's real 404 response.
+    return env.ASSETS.fetch(request);
   },
 };

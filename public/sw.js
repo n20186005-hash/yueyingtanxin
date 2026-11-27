@@ -1,52 +1,32 @@
-const CACHE = 'yueyingtanxin-v1';
-const PRECACHE = ['/', '/index.html', '/images/og.webp', '/favicon.svg', '/manifest.webmanifest'];
-
+const CACHE = 'yueyingtanxin-v2';
+const PRECACHE = ['/images/og.webp', '/favicon.svg', '/manifest.webmanifest'];
 self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE).then((cache) => cache.addAll(PRECACHE).catch(() => {})).then(() => self.skipWaiting())
-  );
+  event.waitUntil(caches.open(CACHE).then((cache) => cache.addAll(PRECACHE)).then(() => self.skipWaiting()));
 });
-
 self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) => Promise.all(keys.filter((key) => key !== CACHE).map((key) => caches.delete(key)))).then(() => self.clients.claim())
-  );
+  event.waitUntil(caches.keys().then((keys) => Promise.all(keys.filter((key) => key.startsWith('yueyingtanxin-') && key !== CACHE).map((key) => caches.delete(key)))).then(() => self.clients.claim()));
 });
-
 self.addEventListener('fetch', (event) => {
   const request = event.request;
-  if (request.method !== 'GET') return;
-
   const url = new URL(request.url);
-  if (url.origin !== self.location.origin) return;
-
-  // 導覽請求：網路優先，離線時回退至快取的首頁。
+  if (request.method !== 'GET' || url.origin !== self.location.origin || url.pathname.startsWith('/api/')) return;
   if (request.mode === 'navigate') {
-    event.respondWith(
-      fetch(request)
-        .then((response) => {
-          const copy = response.clone();
-          caches.open(CACHE).then((cache) => cache.put('/index.html', copy));
-          return response;
-        })
-        .catch(() => caches.match('/index.html'))
-    );
+    // Cache each real page separately; never substitute a homepage for a deep link or 404.
+    event.respondWith(fetch(request).then((response) => {
+      if (response.ok) {
+        const copy = response.clone();
+        event.waitUntil(caches.open(CACHE).then((cache) => cache.put(request, copy)));
+      }
+      return response;
+    }).catch(async () => (await caches.match(request)) || new Response('目前離線，請連線後重新載入此頁。', {status: 503, headers: {'Content-Type': 'text/plain; charset=utf-8'}})));
     return;
   }
-
-  // 靜態資源：快取優先，回源後補入快取。
-  event.respondWith(
-    caches.match(request).then((cached) => {
-      if (cached) return cached;
-      return fetch(request)
-        .then((response) => {
-          if (response.ok && (url.pathname.startsWith('/images/') || url.pathname.startsWith('/_astro/'))) {
-            const copy = response.clone();
-            caches.open(CACHE).then((cache) => cache.put(request, copy));
-          }
-          return response;
-        })
-        .catch(() => cached);
-    })
-  );
+  if (!url.pathname.startsWith('/images/') && !url.pathname.startsWith('/_astro/') && !PRECACHE.includes(url.pathname)) return;
+  event.respondWith(caches.match(request).then((cached) => cached || fetch(request).then((response) => {
+    if (response.ok) {
+        const copy = response.clone();
+        event.waitUntil(caches.open(CACHE).then((cache) => cache.put(request, copy)));
+      }
+    return response;
+  })));
 });

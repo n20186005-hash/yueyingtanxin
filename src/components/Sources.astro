@@ -1,0 +1,16 @@
+---
+import { checked, sources } from '../data/sources';
+interface Props { topic?: 'visit' | 'fountain' | 'transport' | 'night' }
+const { topic = 'visit' } = Astro.props;
+const links = topic === 'fountain'
+  ? [[sources.fountain, '嘉義市觀光旅遊網：蘭潭音樂噴泉（季節場次）'], [sources.reopening, '嘉義市政府觀光新聞處復演訊息（中央社訊息平台，2026-08-27）']]
+  : topic === 'transport'
+  ? [[sources.fountain, '嘉義市觀光旅遊網：月影潭心站交通與轉乘'], [sources.bus, '嘉義市公車資訊與動態查詢'], [sources.brt, '嘉義市 BRT 轉乘資訊']]
+  : [[sources.openData, '交通部觀光署：月影潭心開放時間與藝術介紹'], [sources.art, '嘉義市夜遊專題：藝術作品與夜景']];
+---
+<aside class="site-shell pb-16 sources" aria-label="本頁資料來源">
+  <h2 class="display-serif text-2xl text-white">本頁資料來源</h2>
+  <p class="mt-3 text-sm leading-7 text-white/65">資料核對：<time datetime={checked}>{checked}</time>。行程長度與拍照方式為本站規劃建議。</p>
+  <ul class="mt-3 space-y-2">{links.map(([href, label]) => <li><a href={href} target="_blank" rel="noopener noreferrer">{label} ↗</a></li>)}</ul>
+  <p class="mt-4 text-sm"><a href="/sources/">資料政策與照片署名</a></p>
+</aside>
