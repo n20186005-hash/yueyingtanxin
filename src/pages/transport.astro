@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import Sources from '../components/Sources.astro';
+import { sources } from '../data/sources';
 
 const title = '月影潭心交通：公車、停車與怎麼去｜嘉義景點';
 const description =
@@ -10,16 +12,16 @@ const breadcrumbName = '交通與停車';
 const mapsURL =
   'https://www.google.com/maps/place/%E5%85%B0%E6%BD%AD%E6%9C%88%E5%BD%B1%E6%BD%AD%E5%BF%83/data=!4m7!3m6!1s0x346e9458614570cb:0xfde645383820da8b!8m2!3d23.465877!4d120.48071!16s%2Fg%2F11fxxxvc6p!19sChIJy3BFYViUbjQRi9ogODhF5v0?authuser=0&hl=zh-CN&rclk=1';
 const mapsShareURL = 'https://maps.app.goo.gl/TGMYG7zRJhNdXm1q9';
-const govtTourismURL = 'https://taiwan.net.tw/';
+const govtTourismURL = sources.attraction;
 
 const faqs = [
   {
     question: '沒有開車怎麼前往月影潭心？',
-    answer: '可由嘉義車站搭乘市區公車前往「月影潭心」站，下車後短距離步行抵達。由高鐵嘉義站出發，可先搭 BRT 到嘉義車站再轉乘。班次可能調整，出發前請查看當日動態。',
+    answer: '可由嘉義車站轉乘往嘉大校區的中山幹線（綠線／綠 A 線），於「月影潭心」站下車，官方資料列步行約 1 分鐘。由高鐵嘉義站出發，可先搭 BRT 到嘉義車站再轉乘。班次可能調整，出發前請查看當日動態。',
   },
   {
     question: '現場方便停車嗎？',
-    answer: '周邊有路邊與風景區停車空間，部分位置為免費使用；假日傍晚與活動時段較容易滿位，抵達後請以現場標線、告示與交通人員指引為準，不佔用紅線、消防通道、住家出入口及步道。',
+    answer: '周邊有路邊與風景區停車空間，收費與可停區域依停車場及路邊告示辨識；假日傍晚與活動時段較容易滿位，抵達後請以現場標線、告示與交通人員指引為準，不佔用紅線、消防通道、住家出入口及步道。',
   },
   {
     question: '導航要設什麼目的地？',
@@ -27,14 +29,14 @@ const faqs = [
   },
   {
     question: '從高鐵嘉義站怎麼去？',
-    answer: '先搭 BRT 到臺鐵嘉義站後站，再步行至市區公車轉乘點改搭往月影潭心的班車；或在嘉義公園一帶轉乘往蘭潭方向路線，方便把嘉義公園排進同一天。',
+    answer: '搭 7211／7212 BRT 至嘉義市轉運中心（臺鐵後站），再依站牌指示轉乘往嘉大校區的中山幹線（綠線／綠 A 線），在月影潭心站下車。先確認轉乘與回程末班車。',
   },
 ];
 ---
 
 <Layout title={title} description={description} path={path} breadcrumbName={breadcrumbName} faqs={faqs}>
   <section class="site-shell pt-28 pb-16 md:pt-36 md:pb-20" aria-labelledby="page-title">
-    <nav class="breadcrumb mb-6" aria-label="所在位置">蘭潭月影潭心 <span aria-hidden="true">›</span> <span class="text-[#d3ad70]">交通與停車</span></nav>
+    <nav class="breadcrumb mb-6" aria-label="所在位置"><a href="/">蘭潭月影潭心</a> <span aria-hidden="true">›</span> <span class="text-[#d3ad70]">交通與停車</span></nav>
     <div class="eyebrow">GETTING THERE</div>
     <h1 id="page-title" class="hero-title !text-5xl !leading-tight md:!text-6xl">月影潭心<br />交通與停車</h1>
     <p class="section-copy mt-6 max-w-3xl">無論從機場、臺鐵、高鐵或自行開車，都能安排一趟順路的蘭潭行。這頁整理各種抵達方式與停車重點。</p>
@@ -43,6 +45,8 @@ const faqs = [
       <a class="primary-button no-underline" href="/opening-hours/">開放時間與門票 <span aria-hidden="true">↗</span></a>
     </div>
   </section>
+
+  <figure class="site-shell pb-12"><img class="w-full max-h-[30rem] rounded-2xl object-cover" src="/images/lantan-panorama.webp" srcset="/images/responsive/lantan-panorama-640.webp 640w, /images/responsive/lantan-panorama-960.webp 960w" sizes="(min-width: 1024px) 960px, 100vw" width="960" height="720" loading="lazy" decoding="async" alt="蘭潭湖岸風景；導航請選月影潭心地點。" /><figcaption class="mt-3 text-sm leading-7 text-white/65">蘭潭湖岸風景；導航請選月影潭心地點。 <a href="/sources/">照片作者與授權</a></figcaption></figure>
 
   <section class="site-shell pb-20" aria-labelledby="address-title">
     <div class="grid gap-6 lg:grid-cols-2">
@@ -77,23 +81,23 @@ const faqs = [
       <div class="mt-12 space-y-8">
         <article class="timeline-item">
           <div class="flex flex-wrap items-center gap-3"><span class="route-badge">機場</span><h3 class="display-serif text-2xl text-white">從機場到蘭潭</h3></div>
-          <p class="mt-3 leading-7 text-white/65">離嘉義最近的民用航空場為<strong class="text-white/85">臺南機場</strong>，也可經<strong class="text-white/85">高雄小港機場</strong>或<strong class="text-white/85">臺北松山／桃園機場</strong>轉乘高鐵。落地後先前往高鐵嘉義站或臺鐵嘉義站，再依下方大眾運輸前往；行李多或同行者眾時，從嘉義車站直接搭計程車最省轉乘。</p>
+          <p class="mt-3 leading-7 text-white/65">從抵達的機場先規劃鐵路或接駁至臺鐵嘉義站、高鐵嘉義站，再接續 BRT 與市區公車。航空班次與機場接駁各有時刻表，請把轉乘及回程末班時間一併確認；行李多時可評估嘉義車站到景點的計程車接駁。</p>
         </article>
         <article class="timeline-item">
           <div class="flex flex-wrap items-center gap-3"><span class="route-badge">臺鐵</span><h3 class="display-serif text-2xl text-white">從臺鐵嘉義車站出發</h3></div>
-          <p class="mt-3 leading-7 text-white/65">於市區公車站轉乘往蘭潭方向的路線，在「月影潭心」站下車後短距離步行抵達。路線編號與班次仍請以當日電子站牌或公車系統為準，避免依舊文章時間前往。</p>
+          <p class="mt-3 leading-7 text-white/65">轉乘往嘉大校區的中山幹線（綠線／綠 A 線），在「月影潭心」站下車，官方列步行約 1 分鐘。舊資料可能使用市區 1／1A 名稱；出發前用官方公車頁確認當日路線、到站與回程末班。</p>
         </article>
         <article class="timeline-item">
           <div class="flex flex-wrap items-center gap-3"><span class="route-badge">高鐵</span><h3 class="display-serif text-2xl text-white">從高鐵嘉義站出發</h3></div>
-          <p class="mt-3 leading-7 text-white/65">先搭 BRT 到臺鐵嘉義站後站，再步行至市區公車轉乘點改搭往月影潭心的班車；或在嘉義公園一帶轉乘往蘭潭方向路線，方便把嘉義公園排進同一天。</p>
+          <p class="mt-3 leading-7 text-white/65">搭 7211／7212 BRT 至嘉義市轉運中心（臺鐵後站），再依站牌指示轉乘往嘉大校區的中山幹線（綠線／綠 A 線），在月影潭心站下車。先確認轉乘與回程末班車。</p>
         </article>
         <article class="timeline-item">
           <div class="flex flex-wrap items-center gap-3"><span class="route-badge">公車</span><h3 class="display-serif text-2xl text-white">市區公車怎麼搭</h3></div>
-          <p class="mt-3 leading-7 text-white/65">嘉義市區公車以嘉義車站為樞紐，往蘭潭方向的部分路線會經過「月影潭心」站。建議先用官方公車 App 或電子站牌查「即時到站」再決定候車點；假日班次可能減班，請預留緩衝時間。</p>
+          <p class="mt-3 leading-7 text-white/65">嘉義市區公車以嘉義車站為樞紐，往蘭潭方向的部分路線會經過「月影潭心」站。建議先用官方公車 App 或電子站牌查「即時到站」再決定候車點；請分別查平日、假日與回程班次，預留緩衝時間。</p>
         </article>
         <article class="timeline-item">
           <div class="flex flex-wrap items-center gap-3"><span class="route-badge">計程車</span><h3 class="display-serif text-2xl text-white">計程車與網約車</h3></div>
-          <p class="mt-3 leading-7 text-white/65">從臺鐵／高鐵嘉義站叫車最直達，導航目的地請設「蘭潭月影潭心」，避免只搜「蘭潭」停在較遠湖岸。車資依跳表或平台計費，離峰與夜間可能加價；回程可在作品附近叫車，留意假日傍晚等候較久。</p>
+          <p class="mt-3 leading-7 text-white/65">從臺鐵／高鐵嘉義站叫車最直達，導航目的地請設「蘭潭月影潭心」，避免只搜「蘭潭」停在較遠湖岸。車資依跳表或平台計費，加成依業者公告；回程可在作品附近叫車，留意假日傍晚等候較久。</p>
         </article>
         <article class="timeline-item">
           <div class="flex flex-wrap items-center gap-3"><span class="route-badge">自駕</span><h3 class="display-serif text-2xl text-white">開車、機車與自行車</h3></div>
@@ -108,7 +112,7 @@ const faqs = [
       <div>
         <div class="eyebrow">PARKING</div>
         <h2 id="parking-title" class="section-title">停車重點</h2>
-        <p class="section-copy mt-6">周邊有路邊停車與蘭潭風景區停車空間，部分位置為免費使用。</p>
+        <p class="section-copy mt-6">周邊有路邊停車與蘭潭風景區停車空間，收費與可停區域依停車場及路邊告示辨識。</p>
       </div>
       <div class="space-y-6">
         <article class="prose-block">
@@ -117,11 +121,11 @@ const faqs = [
         </article>
         <article class="prose-block">
           <h3 class="display-serif text-2xl text-white">停車守則</h3>
-          <p class="section-copy mt-3">不佔用紅線、消防通道、住家出入口及步道；路邊下車時留意彎道與自行車；對面一帶可找到公共廁所，開放狀況依現場為準。</p>
+          <p class="section-copy mt-3">不佔用紅線、消防通道、住家出入口及步道；路邊下車時留意彎道與自行車；如需廁所，先查看現場導覽牌指示與開放狀況。</p>
         </article>
       </div>
     </div>
-    <p class="season-note mt-10">官方區域旅遊資訊請參考 <a class="underline decoration-white/25 underline-offset-2 hover:text-white" href={govtTourismURL} target="_blank" rel="noopener noreferrer">臺灣觀光資訊網（Taiwan Tourism）<span aria-hidden="true"> ↗</span></a>。</p>
+    <p class="season-note mt-10">官方區域旅遊資訊請參考 <a class="underline decoration-white/25 underline-offset-2 hover:text-white" href={govtTourismURL} target="_blank" rel="noopener noreferrer">嘉義市觀光旅遊網：月影潭心<span aria-hidden="true"> ↗</span></a>。</p>
   </section>
 
   <section id="faq" class="site-shell py-24 md:py-32" aria-labelledby="faq-title">
@@ -141,4 +145,5 @@ const faqs = [
       </div>
     </div>
   </section>
+  <Sources topic="transport" />
 </Layout>

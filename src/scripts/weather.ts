@@ -265,7 +265,7 @@ function render(data: WeatherData, widget: HTMLElement): void {
         ${riskBlock(advice.risk)}
         ${adviceBlock('出行穿搭', advice.outfit, 'outfit')}
         ${adviceBlock('遊玩安排', advice.activity, 'activity')}
-        ${adviceBlock('随身物品', advice.items, 'items')}
+        ${adviceBlock('隨身物品', advice.items, 'items')}
       </div>
     </div>
     <div class="weather-forecast">

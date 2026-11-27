@@ -1,0 +1,29 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { sources, checked } from '../data/sources';
+const credits = [
+  ['lienyuan lee', '月影潭心主圖、湖岸及全景系列', 'CC BY 3.0', 'https://creativecommons.org/licenses/by/3.0/', 'https://commons.wikimedia.org/wiki/File:%E8%98%AD%E6%BD%AD%E9%A2%A8%E6%99%AF%E5%8D%80_Orchid_Lake_Scenic_Area_-_panoramio.jpg'],
+  ['Blowing Puffer Fish', '多雲蘭潭湖面', 'CC BY 2.0', 'https://creativecommons.org/licenses/by/2.0/', 'https://commons.wikimedia.org/wiki/File:Cloudy_sky_over_Lantan_Lake.jpg'],
+  ['Malcolm Koo', '蘭潭音樂噴泉', 'CC BY-SA 3.0', 'https://creativecommons.org/licenses/by-sa/3.0/', 'https://commons.wikimedia.org/wiki/File:Lantan_Reservoir,_musical_fountain_(Taiwan).jpg'],
+];
+---
+<Layout title="資料來源與照片授權｜蘭潭月影潭心" description="月影潭心旅遊指南的官方資料來源、查證範圍、Google 地圖歷史評分與照片作者授權。" path="/sources/" breadcrumbName="資料來源與照片授權">
+  <section class="site-shell pt-28 pb-20 sources">
+    <nav class="breadcrumb mb-6" aria-label="所在位置"><a href="/">首頁</a> › 資料來源</nav>
+    <h1 class="section-title">資料來源與照片授權</h1>
+    <p class="section-copy mt-6">本站為獨立第三方旅遊指南，與嘉義市政府及景區管理單位無隸屬關係，不提供官方售票或預約服務。以下為 <time datetime={checked}>{checked}</time> 核對的公開資料；本文不代表現場實測或即時營運保證。</p>
+    <h2 class="display-serif mt-12 text-3xl text-white">官方資料與適用範圍</h2>
+    <ul class="sources-list">
+      <li><a href={sources.attraction}>嘉義市觀光旅遊網：蘭潭月影潭心</a><p>景點地點、聯絡資訊與參觀介紹。地址為嘉義市東區鹿寮里紅毛埤187號之4。</p></li>
+      <li><a href={sources.openData}>交通部觀光署：月影潭心開放資料</a><p>政府資料列每日 24 小時開放，介紹王文志的鋁編公共藝術及夜間四段燈光變化。未列固定亮燈與熄燈時刻。收費欄位標為需入場相關費用，卻沒有票價說明；此點與常見旅遊介紹的免費資訊有差異，因此本站不將免費或票價寫入結構化資料。費用請依官方聯絡窗口及現場告示確認。</p></li>
+      <li><a href={sources.fountain}>嘉義市觀光旅遊網：蘭潭音樂噴泉</a><p>冬令（10月至翌年3月）18:30、19:30、20:30、21:30；夏令（4至9月）19:30、20:30、21:30。這是噴泉常態場次，不能用來推定月影潭心的點燈時間。該頁列中山幹線綠線／綠 A 線與 BRT 轉乘；不同資料年代的路線名稱可能不同。</p></li>
+      <li><a href={sources.reopening}>嘉義市政府觀光新聞處復演訊息（中央社訊息平台，2026-08-27）</a><p>記錄 2026-02-25 因水位偏低停演、2026-08-28 恢復展演及夏令三場。歷史復演公告不保證每晚均有演出，臨時維護與水情公告優先。</p></li>
+      <li><a href={sources.art}>嘉義市夜遊專題</a><p>藝術作品設計、湖畔景觀與夜遊特色。拍照、停留時間和行程先後為本站規劃建議；不保證特定天氣、倒影、亮燈或停車空位。</p></li>
+    </ul>
+    <h2 class="display-serif mt-12 text-3xl text-white">評分與照片</h2>
+    <p class="section-copy mt-6">首頁 4.2／5、4,194 則為交接資料中的 Google 地圖 2026 年 10 月歷史快照，並非即時查詢或本站訪客評分，也不套用至周邊景點。<a href="https://maps.app.goo.gl/TGMYG7zRJhNdXm1q9">查看地圖最新評價</a>。</p>
+    <ul class="sources-list">{credits.map(([author, subject, licence, licenceURL, source]) => <li><strong>{author}</strong><p>{subject} · <a href={licenceURL}>{licence}</a> · <a href={source}>原始照片來源</a>。本站既有素材曾縮放、轉為 WebP；社群分享圖另作裁切。手機版衍生尺寸沿用相同作者與授權。</p></li>)}</ul>
+    <p class="section-copy mt-8">湖岸全景系列來源另見 <a href="https://commons.wikimedia.org/wiki/Category:Lantan_Reservoir">Wikimedia Commons 蘭潭分類</a>。以上沿用專案既有署名與素材，不宣稱由本站拍攝。</p>
+    <a class="primary-button mt-10" href="/">回到旅遊指南</a>
+  </section>
+</Layout>

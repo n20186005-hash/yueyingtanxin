@@ -140,8 +140,14 @@ img {
 }
 
 .nav-scroll {
+  min-width: 0;
+  overscroll-behavior-x: contain;
+  flex: 1;
+  justify-content: flex-end;
   scrollbar-width: none;
 }
+
+.nav-scroll a { flex: 0 0 auto; white-space: nowrap; }
 
 .nav-scroll::-webkit-scrollbar {
   display: none;
@@ -1357,4 +1363,11 @@ dialog.lightbox::backdrop {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
   }
+}
+
+@media (max-width: 767px) {
+  .topbar > .site-shell { gap: 0.75rem; }
+  .nav-scroll { justify-content: flex-start; }
+  .nav-scroll a { min-height: 44px; display: inline-flex; align-items: center; }
+  .hero-title { overflow-wrap: anywhere; }
 }
